@@ -1,7 +1,11 @@
 // import XlsxPopulate from "xlsx-populate";
 
-// let url = 'http://localhost:5000/admin/computador/';
-// let url = 'https://apiportatilplus.onrender.com/admin/computador/';
+const url = document.getElementById("url").value;
+
+sessionStorage.setItem("portatilplus", url);
+
+const portatilplus = sessionStorage.getItem("portatilplus")+"/dash/computador";
+
 
 const modalcompu = new bootstrap.Modal(document.getElementById('mi-modal'));
 
@@ -24,7 +28,7 @@ btnnuevo.addEventListener('click', () => {
 });
 
 // MOSTRAR REGISTROS GET
-fetch(url)
+fetch(portatilplus)
     .then(res => res.json())
     .then(data => {
         if (data.error) {
@@ -80,7 +84,7 @@ on(document, 'click', '.btnborrar', e => {
         confirmButtonText: "Si, eliminar!"
     }).then((result) => {
         if (result.isConfirmed) {
-            fetch(url + idcomputador, {
+            fetch(portatilplus + idcomputador, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json"
@@ -173,7 +177,7 @@ formcompu.addEventListener('submit', (e) => {
                 fecha: fecha.value,
             })
         }
-        fetch(url, options)
+        fetch(portatilplus, options)
             .then(res => res.json())
             .then(data => {
                 if (data.error == true) {

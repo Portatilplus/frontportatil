@@ -5,7 +5,7 @@ const logueo =  async()=>{
 
     sessionStorage.setItem("portatilplus", url);
 
-    const portatilplus = sessionStorage.getItem("portatilplus")+"/login" ;
+    const portatilplus = sessionStorage.getItem("portatilplus")+"/" ;
 
     const options = {
         method: "POST",
@@ -21,8 +21,7 @@ const logueo =  async()=>{
     await fetch(portatilplus, options)
     .then(res => res.json())
     .then(data=>{
-        if(data.error== true){  
-            console.log(portatilplus);
+        if(data.error== true){
             Swal.fire({
                 icon: "error",
                 title: "Oops...",

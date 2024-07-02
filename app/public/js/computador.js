@@ -4,7 +4,7 @@ const url = document.getElementById("url").value;
 
 sessionStorage.setItem("portatilplus", url);
 
-const portatilplus = sessionStorage.getItem("portatilplus")+"/dash/computador";
+const portatilplus = sessionStorage.getItem("portatilplus")+"/admin/computador";
 
 
 const modalcompu = new bootstrap.Modal(document.getElementById('mi-modal'));

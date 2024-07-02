@@ -34,7 +34,12 @@ const accesorios = (req, res)=>{
 }
 
 const computadores = (req, res)=>{
-    res.render("view.nav.computador.ejs");
+    const url = process.env.BACK_URL;
+    const options ={
+        url:url
+    };
+
+    res.render("view.nav.computador.ejs", options);
 }
 const notas = (req, res)=>{
     res.render("view.nav.notas.ejs");

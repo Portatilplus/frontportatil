@@ -1,6 +1,6 @@
 // import XlsxPopulate from "xlsx-populate";
 
-let url = 'http://localhost:5000/admin/computador/';
+// let url = 'http://localhost:5000/admin/computador/';
 // let url = 'https://apiportatilplus.onrender.com/admin/computador/';
 
 const modalcompu = new bootstrap.Modal(document.getElementById('mi-modal'));

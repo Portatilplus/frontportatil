@@ -1,7 +1,11 @@
-let url = 'http://localhost:5000/admin/historialreserva'
+const url = document.getElementById("url").value;
+
+sessionStorage.setItem("portatilplus", url);
+
+const portatilplus = sessionStorage.getItem("portatilplus")+"/admin/historialreserva";
 
 // consumir
-fetch(url)
+fetch(portatilplus)
 .then(res=>res.json())
 .then(data=>{
     if(data.error){

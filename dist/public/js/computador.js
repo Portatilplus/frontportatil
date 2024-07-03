@@ -136,10 +136,12 @@ on(document, 'click', '.btneditar', e => {
 formcompu.addEventListener('submit', (e) => {
     e.preventDefault()
 
-    if (!marca.value || !modelo.value || !area.value || !estado.value || !fecha.value) {
+    if (!marca.value || !modelo.value || !area.value || !estado.value) {
         Swal.fire("Campos vacios!");
         return;
     }
+
+
     if (opcion == 'nuevo') {
         const options = {
             method: 'POST',
@@ -151,7 +153,6 @@ formcompu.addEventListener('submit', (e) => {
                 modelo: modelo.value,
                 estado: estado.value,
                 area: area.value,
-                fecha: fecha.value,
             })
         }
         fetch(portatilplus, options)

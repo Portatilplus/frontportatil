@@ -1,8 +1,11 @@
-let url = 'http://localhost:5000/admin/notas'
 
-// const titulo = document.getElementById('titulo').value;
-// const notas = document.getElementById('nota').value;
-// const prioridad = document.getElementById('prioridad').value;
+
+const url = document.getElementById("url").value;
+
+sessionStorage.setItem("portatilplus", url);
+
+const portatilplus = sessionStorage.getItem("portatilplus")+"/admin/notas/";
+
 
 const btnnuevo = document.getElementById('btnnuevo');
 
@@ -10,7 +13,7 @@ btnnuevo.addEventListener('click', () => {
     window.location.href= "/dash/ingresarnotas"
 })
 
-fetch(url)
+fetch(portatilplus)
 .then(res => res.json())
 .then(data =>{
     if(data.error){

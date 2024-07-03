@@ -63,3 +63,58 @@ function enviarnota(idnotas, tarea, notas, prioridad, estado) {
 }
 
 
+// borrar notas
+
+const on = (element, event, selector, handler)=>{
+    element.addEventListener(event, (e)=>{
+        if(e.target.closest(selector)){
+            handler(e);
+        }
+    });
+}
+
+on(document, 'click', '.btnborrar', e=>{
+    const fila = e.target.parentNode.parentNode;
+    const idnotas = fila.firstElementChild.innerHTML;
+    
+
+    Swal.fire({
+        title: "Estas Seguro?",
+        text: "No podras revertirlo",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, eliminar!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+            fetch(portatilplus + idnotas, {
+                method: "DELETE",
+                headers:{
+                    "Content-Type": "application/json"
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.error){
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Hubo un problema al eliminar sancion!",
+                      });
+                }else{
+                    Swal.fire({
+                        title: "Eliminado!",
+                        text: "La sancion ha sido eliminada.",
+                        icon: "success"
+                      }).then(()=>{
+                        location.reload()
+                      })
+                }
+            })
+            .catch(error => console.error(error));
+
+        }
+      });
+})
+

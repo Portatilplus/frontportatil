@@ -153,6 +153,7 @@ formcompu.addEventListener('submit', (e) => {
                 modelo: modelo.value,
                 estado: estado.value,
                 area: area.value,
+                fecha: fecha.value,
             })
         }
         fetch(portatilplus, options)

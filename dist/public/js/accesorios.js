@@ -11,7 +11,7 @@ const modalaccesorio = new bootstrap.Modal(document.getElementById('modalaccesor
 const formaccesorio = document.querySelector('form');
 const numero = document.getElementById('numeroaccesorio');
 const nombre = document.getElementById('nombreaccesorio');
-const estado = document.getElementById('esatdo');
+const estado = document.getElementById('estado');
 
 let opcion = '';
 

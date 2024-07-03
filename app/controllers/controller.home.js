@@ -11,12 +11,21 @@ const estado = (req, res)=>{
     res.render("view.nav.estado.ejs")
 }
 const historial = (req, res)=>{
-    res.render("view.nav.historial.ejs")
+    const url = process.env.BACK_URL;
+    const options ={
+        url:url
+    };
+
+    res.render("view.nav.historial.ejs", options)
 
 }
 // historial
 const historialreservas = (req, res) =>{
-    res.render("historial/view.his.ejs");
+    const url = process.env.BACK_URL;
+    const options ={
+        url:url
+    };
+    res.render("historial/view.his.ejs",options);
     // historail reserva
 }
 

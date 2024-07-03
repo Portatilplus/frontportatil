@@ -213,27 +213,6 @@ formcompu.addEventListener('submit', (e) => {
 //     workbook.sheet(0).cell('F1').value('Fecha');
 //     return workbook.toFileAsync("/dash")
 // }
-// filtros
-// document.getElementById('filtroestado').addEventListener('change', (e)=>{
-//     const estado = e.target.value.toLowerCase();
-//     const estadoseleccionado = document.getElementById('filtroestado').value.toLowerCase();
-
-//     document.querySelectorAll('#data tr').forEach(row => {
-//         const marca = row.querySelector('.marca').textContent.toLowerCase();
-//         const estado = row.querySelector('.estado').textContent.toLowerCase();
-//         const area = row.querySelector('.area').textContent.toLowerCase();
-    
-//         const coincideConBusqueda = marca.includes(query) || area.includes(query);
-//         const coincideConEstado = estadoseleccionado === "" || estado.includes(estadoseleccionado);
-    
-//         if (coincideConBusqueda && coincideConEstado) {
-//           row.classList.remove('filtro');
-//         } else {
-//           row.classList.add('filtro');
-//         }
-//       });
-    
-// });
 
 // buscador
 document.getElementById('buscador').addEventListener('keyup', e => {

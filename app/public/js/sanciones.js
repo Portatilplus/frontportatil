@@ -1,7 +1,10 @@
 // url
 
-let url = 'http://localhost:5000/admin/sancion/'
-// let url = 'https://apiportatilplus.onrender.com/admin/sancion/'
+const url = document.getElementById("url").value;
+
+sessionStorage.setItem("portatilplus", url);
+
+const portatilplus = sessionStorage.getItem("portatilplus")+"/admin/sancion/";
 
 
 const modalsancion = new bootstrap.Modal(document.getElementById('modalsancion'))
@@ -23,7 +26,7 @@ btnnuevo.addEventListener('click', () => {
 
 // mostrar datos get
 
-fetch(url)
+fetch(portatilplus)
 .then(res=>res.json())
 .then(data =>{
     if(data.error){
@@ -85,7 +88,7 @@ on(document, 'click', '.btnborrar', e=>{
         confirmButtonText: "Si, eliminar!"
       }).then((result) => {
         if (result.isConfirmed) {
-            fetch(url + id_sancion, {
+            fetch(portatilplus + id_sancion, {
                 method: "DELETE",
                 headers:{
                     "Content-Type": "application/json"
@@ -146,7 +149,7 @@ formsancion.addEventListener('submit', (e) =>{
                 motivo : motivo.value
             })
         }
-        fetch(url, options)
+        fetch(portatilplus, options)
         .then(res => res.json())
         .then(data =>{
             const nuevasancion = []
@@ -168,7 +171,7 @@ formsancion.addEventListener('submit', (e) =>{
                 motivo : motivo.value
             })
         }
-        fetch(url, options)
+        fetch(portatilplus, options)
         .then(res => res.json())
         .then(data =>{
             if(data.error == true){

@@ -145,7 +145,7 @@ formaccesorio.addEventListener('submit', (e) => {
                 estado: estado.value,
             })
         }
-        fetch(url, options)
+        fetch(portatilplus, options)
             .then(res => res.json())
             .then(data => {
                 const nuevoacc = []

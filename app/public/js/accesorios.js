@@ -1,37 +1,44 @@
-let url = 'http://localhost:5000/admin/accesorio/';
-// let url = 'https://apiportatilplus.onrender.com/admin/accesorio/';
 
+const url = document.getElementById("url").value;
+
+sessionStorage.setItem("portatilplus", url);
+
+const portatilplus = sessionStorage.getItem("portatilplus")+"/admin/accesorio/";
+
+// url
 const modalaccesorio = new bootstrap.Modal(document.getElementById('modalaccesorio'));
 
 const formaccesorio = document.querySelector('form');
 const numero = document.getElementById('numeroaccesorio');
 const nombre = document.getElementById('nombreaccesorio');
+const estado = document.getElementById('esatdo');
 
 let opcion = '';
-let accesorios = [];
 
 btncrear.addEventListener('click', () => {
     numero.value = '';
     nombre.value = '';
+    estado.value = '';
     modalaccesorio.show();
     opcion = 'nuevo';
 });
 
 // MOSTRAR REGISTROS GET
-fetch(url)
+fetch(portatilplus)
     .then(res => res.json())
     .then(data => {
         if (data.error) {
             console.error("error al mostrar los datos", data);
         } else {
-            accesorios = data.body[0];
-            mostrar(accesorios);
+            
+            mostrar(data.body[0]);
         }
     })
     .catch(error => console.log(error));
 
 // mostrar los resultados
 const mostrar = (data) => {
+    console.log(data);
     let body = '';
     for (let i = 0; i < data.length; i++) {
         body += `
@@ -72,7 +79,7 @@ on(document, 'click', '.btnborrar', e => {
         confirmButtonText: "Si, eliminar!"
     }).then((result) => {
         if (result.isConfirmed) {
-            fetch(url + id_accesorio, {
+            fetch(portatilplus + id_accesorio, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json"
@@ -108,10 +115,12 @@ on(document, 'click', '.btneditar', e => {
     idform = fila.children[0].innerHTML;
     const numeroform = fila.children[1].innerHTML;
     const nombreform = fila.children[2].innerHTML;
+    const estadoform = fila.children[3].innerHTML;
 
     // mandarlos al formulario
     numero.value = numeroform;
     nombre.value = nombreform;
+    estado.value = estadoform;
 
     opcion = 'editar';
     modalaccesorio.show();
@@ -134,13 +143,15 @@ formaccesorio.addEventListener('submit', (e) => {
             body: JSON.stringify({
                 numero_accesorio: numero.value,
                 nombre_accesorio: nombre.value,
+                estado: estado.value,
             })
         }
         fetch(url, options)
             .then(res => res.json())
             .then(data => {
-                accesorios.push(data.body);
-                mostrar(accesorios);
+                const nuevoacc = []
+                nuevoacc.push(data.body);
+                mostrar(nuevoacc);
                 location.reload();
             })
     }
@@ -154,9 +165,10 @@ formaccesorio.addEventListener('submit', (e) => {
                 id_accesorio: idform,
                 numero_accesorio: numero.value,
                 nombre_accesorio: nombre.value,
+                estado: estado.value,
             })
         }
-        fetch(url, options)
+        fetch(portatilplus, options)
             .then(res => res.json())
             .then(data => {
                 if (data.error == true) {

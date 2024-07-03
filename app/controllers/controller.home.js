@@ -30,7 +30,12 @@ const sanciones = (req, res)=>{
 }
 
 const accesorios = (req, res)=>{
-    res.render("view.nav.accesorio.ejs");
+    const url = process.env.BACK_URL;
+    const options ={
+        url:url
+    };
+
+    res.render("view.nav.accesorio.ejs", options);
 }
 
 const computadores = (req, res)=>{

@@ -4,7 +4,7 @@ const url = document.getElementById("url").value;
 
 sessionStorage.setItem("portatilplus", url);
 
-const portatilplus = sessionStorage.getItem("portatilplus")+"/admin/computador";
+const portatilplus = sessionStorage.getItem("portatilplus")+"/admin/computador/";
 
 
 const modalcompu = new bootstrap.Modal(document.getElementById('mi-modal'));
@@ -47,7 +47,6 @@ const mostrar = (data) => {
         <tr>
             <td>${data[i].idcomputador}</td>
             <td class="marca">${data[i].marca}</td>
-            <td><img src="${data[i].imagen}" alt="foto" width="50" height="50"></td>
             <td>${data[i].modelo}</td>
             <td class="estado">${data[i].estado}</td>
             <td class="area">${data[i].area}</td>

@@ -8,7 +8,12 @@ const inicio = (req, res)=>{
 // , {tokenprivate}
 }
 const estado = (req, res)=>{
-    res.render("view.nav.estado.ejs")
+    const url = process.env.BACK_URL;
+    const options ={
+        url:url
+    };
+    
+    res.render("view.nav.estado.ejs", options)
 }
 const historial = (req, res)=>{
     const url = process.env.BACK_URL;

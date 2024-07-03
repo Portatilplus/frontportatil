@@ -154,7 +154,7 @@ formcompu.addEventListener('submit', (e) => {
                 fecha: fecha.value,
             })
         }
-        fetch(url, options)
+        fetch(portatilplus, options)
             .then(res => res.json())
             .then(data => {
                 mostrar(data.body);

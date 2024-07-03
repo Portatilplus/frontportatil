@@ -1,6 +1,10 @@
 // url para consumir la api
-let url = 'http://localhost:5000/admin/retiro/'
-// let url = 'https://apiportatilplus.onrender.com/admin/retiro/'
+
+const url = document.getElementById("url").value;
+
+sessionStorage.setItem("portatilplus", url);
+
+const portatilplus = sessionStorage.getItem("portatilplus")+"/admin/retiro/";
 
 
 const modalretiro = new bootstrap.Modal(document.getElementById('modalretiro'))
@@ -22,7 +26,7 @@ btnnuevo.addEventListener('click', () =>{
 
 // MOSTRAR REGISTROS GET
 
-fetch(url)
+fetch(portatilplus)
 .then(res => res.json())
 .then(data => {
     if(data.error){
@@ -82,7 +86,7 @@ on(document, 'click', '.btnborrar', (e)=>{
         confirmButtonText: "Si, eliminar!"
       }).then((result) => {
         if (result.isConfirmed) {
-            fetch(url + id_retiro, {
+            fetch(portatilplus + id_retiro, {
                 method: "DELETE",
                 headers:{
                     "Content-Type": "application/json"
@@ -152,7 +156,7 @@ formretiro.addEventListener('submit', (e) =>{
             })
         }
 
-        fetch(url, options)
+        fetch(portatilplus, options)
         .then(res => res.json())
         .then(data => {
             if(data.error == true){

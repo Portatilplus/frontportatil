@@ -38,7 +38,6 @@ fetch(portatilplus)
 
 // mostrar los resultados
 const mostrar = (data) => {
-    console.log(data);
     let body = '';
     for (let i = 0; i < data.length; i++) {
         body += `

@@ -14,7 +14,6 @@ const marca = document.getElementById('marca');
 const modelo = document.getElementById('modelo');
 const estado = document.getElementById('estado');
 const area = document.getElementById('area');
-const fecha = document.getElementById('fecha');
 let opcion = '';
 
 btnnuevo.addEventListener('click', () => {
@@ -22,7 +21,6 @@ btnnuevo.addEventListener('click', () => {
     modelo.value = '';
     estado.value = '';
     area.value = '';
-    fecha.value = '';
     modalcompu.show();
     opcion = 'nuevo';
 });
@@ -51,7 +49,6 @@ const mostrar = (data) => {
             <td>${data[i].modelo}</td>
             <td class="estado">${data[i].estado}</td>
             <td class="area">${data[i].area}</td>
-            <td>${data[i].fecha}</td>
             <td class="btn-container">
                 <i class='bx bx-edit btneditar'></i>
                 <i class='bx bx-trash btnborrar'></i>
@@ -122,13 +119,11 @@ on(document, 'click', '.btneditar', e => {
     const modeloform = fila.children[2].innerHTML;
     const estadoform = fila.children[3].innerHTML;
     const areaform = fila.children[4].innerHTML;
-    const fechaform = fila.children[5].innerHTML;
     // mandarlos al formulario
     marca.value = marcaform;
     modelo.value = modeloform;
     estado.value = estadoform;
     area.value = areaform;
-    fecha.value = fechaform;
     opcion = 'editar';
     modalcompu.show();
 })
@@ -152,7 +147,6 @@ formcompu.addEventListener('submit', (e) => {
                 modelo: modelo.value,
                 estado: estado.value,
                 area: area.value,
-                fecha: fecha.value,
             })
         }
         fetch(url, options)
@@ -174,7 +168,6 @@ formcompu.addEventListener('submit', (e) => {
                 modelo: modelo.value,
                 estado: estado.value,
                 area: area.value,
-                fecha: fecha.value,
             })
         }
         fetch(portatilplus, options)
@@ -213,27 +206,7 @@ formcompu.addEventListener('submit', (e) => {
 //     workbook.sheet(0).cell('F1').value('Fecha');
 //     return workbook.toFileAsync("/dash")
 // }
-// filtros
-// document.getElementById('filtroestado').addEventListener('change', (e)=>{
-//     const estado = e.target.value.toLowerCase();
-//     const estadoseleccionado = document.getElementById('filtroestado').value.toLowerCase();
 
-//     document.querySelectorAll('#data tr').forEach(row => {
-//         const marca = row.querySelector('.marca').textContent.toLowerCase();
-//         const estado = row.querySelector('.estado').textContent.toLowerCase();
-//         const area = row.querySelector('.area').textContent.toLowerCase();
-    
-//         const coincideConBusqueda = marca.includes(query) || area.includes(query);
-//         const coincideConEstado = estadoseleccionado === "" || estado.includes(estadoseleccionado);
-    
-//         if (coincideConBusqueda && coincideConEstado) {
-//           row.classList.remove('filtro');
-//         } else {
-//           row.classList.add('filtro');
-//         }
-//       });
-    
-// });
 
 // buscador
 document.getElementById('buscador').addEventListener('keyup', e => {

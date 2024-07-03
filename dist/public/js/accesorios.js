@@ -31,7 +31,7 @@ fetch(portatilplus)
             console.error("error al mostrar los datos", data);
         } else {
             
-            mostrar(data.body[0]);
+            mostrar(data.body);
         }
     })
     .catch(error => console.log(error));

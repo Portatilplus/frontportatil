@@ -23,10 +23,19 @@ const historialreservas = (req, res) =>{
 // historial
 
 const regretiro = (req, res)=>{
-    res.render("view.nav.retiro.ejs")
+    const url = process.env.BACK_URL;
+    const options ={
+        url:url
+    };
+
+    res.render("view.nav.retiro.ejs",options)
 }
 const sanciones = (req, res)=>{
-    res.render("view.nav.sancion.ejs")
+    const url = process.env.BACK_URL;
+    const options ={
+        url:url
+    };
+    res.render("view.nav.sancion.ejs",options)
 }
 
 const accesorios = (req, res)=>{
@@ -47,10 +56,19 @@ const computadores = (req, res)=>{
     res.render("view.nav.computador.ejs", options);
 }
 const notas = (req, res)=>{
-    res.render("view.nav.notas.ejs");
+    const url = process.env.BACK_URL;
+    const options ={
+        url:url
+    };
+    res.render("view.nav.notas.ejs",options);
 }
 const ingrenota = (req, res)=>{
-    res.render("view.notaingre.ejs");
+    const url = process.env.BACK_URL;
+    const options ={
+        url:url
+    };
+
+    res.render("view.notaingre.ejs", options);
 }
 
 

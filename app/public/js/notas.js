@@ -106,8 +106,7 @@ on(document, 'click', '.btnborrar', e=>{
             fetch(portatilplus + idnotas, {
                 method: "DELETE",
                 headers:{
-                    "Content-Type": "application/json",
-                    "x-access-token": token
+                    "Content-Type": "application/json"
                 }
             })
             .then(res => res.json())

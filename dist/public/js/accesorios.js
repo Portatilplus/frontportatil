@@ -31,7 +31,7 @@ fetch(portatilplus)
             console.error("error al mostrar los datos", data);
         } else {
             
-            mostrar(data);
+            mostrar(data.body);
         }
     })
     .catch(error => console.log(error));
@@ -150,7 +150,7 @@ formaccesorio.addEventListener('submit', (e) => {
             .then(res => res.json())
             .then(data => {
                 const nuevoacc = []
-                nuevoacc.push(data);
+                nuevoacc.push(data.body);
                 mostrar(nuevoacc);
                 location.reload();
             })

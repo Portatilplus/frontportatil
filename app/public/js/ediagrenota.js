@@ -1,18 +1,25 @@
 // consumo agregar
 
-let url = 'http://localhost:5000/admin/notas'
+const url = document.getElementById("url").value;
 
-const tarea = document.getElementById('tarea').value;
+sessionStorage.setItem("portatilplus", url);
+
+const portatilplus = sessionStorage.getItem("portatilplus")+"/admin/notas/";
+
+
+// agregar
+
+
+const formnotas = document.querySelector('form__nota');
+
+const tarea = document.getElementById('tareas').value;
 const nota = document.getElementById('notas').value;
 const prioridad = document.getElementById('prioridad').value;
 const estado = document.getElementById('estado').value;
 
-fetch()
+let opcion = ''
 
 
 
 
-document.getElementById('tareas').innerText = localStorage.getItem('tareaform');
-document.getElementById('notas').innerText = localStorage.getItem('notasform');
-document.getElementById('prioridad').innerText = localStorage.getItem('prioridadform');
-document.getElementById('estado').innerText = localStorage.getItem('estadoform');
+

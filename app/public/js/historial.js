@@ -1,9 +1,12 @@
 // url de historial
-let url = 'http://localhost:5000/admin/historial'
-// let url = 'https://apiportatilplus.onrender.com/admin/historial'
+const url = document.getElementById("url").value;
+
+sessionStorage.setItem("portatilplus", url);
+
+const portatilplus = sessionStorage.getItem("portatilplus")+"/admin/historial";
 
 
-fetch(url)
+fetch(portatilplus)
 .then(res => res.json())
 .then(data =>{
     if(data.error){

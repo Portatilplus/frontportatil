@@ -50,17 +50,32 @@ const mostrar = (data) =>{
     }
     document.getElementById('data').innerHTML = body;
 }
+function editRow(button) {
+    // Obtener la fila correspondiente al botón de edición
+    const row = button.parentElement.parentElement;
 
-function enviarnota(idnotas, tarea, notas, prioridad, estado) {
+    // Obtener los datos de la fila
+    const name = row.cells[0].innerText;
+    const age = row.cells[1].innerText;
 
+    // Guardar los datos en localStorage
+    localStorage.setItem('editName', name);
+    localStorage.setItem('editAge', age);
 
-    localStorage.setItem('tareaform',tarea);
-    localStorage.setItem('notasform',notas);
-    localStorage.setItem('prioridadform',prioridad);
-    localStorage.setItem('estadoform',estado);
-    // redirigi
-    window.location.href= "/dash/ingresarnotas"
+    // Redirigir a la página de edición
+    window.location.href = 'edit.html';
 }
+
+// function enviarnota(idnotas, tarea, notas, prioridad, estado) {
+
+
+//     localStorage.setItem('tareaform',tarea);
+//     localStorage.setItem('notasform',notas);
+//     localStorage.setItem('prioridadform',prioridad);
+//     localStorage.setItem('estadoform',estado);
+//     // redirigi
+//     window.location.href= "/dash/ingresarnotas"
+// }
 
 
 // borrar notas

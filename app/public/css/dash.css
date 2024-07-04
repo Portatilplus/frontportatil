@@ -139,6 +139,7 @@ i{
 .card{
   background-color: rgba(0, 0, 0, 0.61);
 }
-.card-title,.card-text{
+.card-title,
+.card-text{
   color: white;
 }

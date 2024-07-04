@@ -33,11 +33,12 @@ const optios = {
 fetch(portatilplus,optios)
 .then(res => res.json())
 .then(data => {
-    if(!tarea || !nota || !prioridad || !estado){
-        Swal.fire("Campos vacios!");
-        return;
+    // if(!tarea || !nota || !prioridad || !estado){
+    //     Swal.fire("Campos vacios!");
+    //     return;
 
-    }
+    // }
+    mostrar(data.body)
     window.location.href ="/dash/notas";
 })
 

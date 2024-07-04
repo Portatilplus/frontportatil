@@ -125,12 +125,7 @@ i{
   background: transparent;
 }
 
-.content{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-  }
+
 
 
   /* dash */

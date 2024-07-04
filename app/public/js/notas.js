@@ -9,9 +9,7 @@ const portatilplus = sessionStorage.getItem("portatilplus")+"/admin/notas/";
 
 const btnnuevo = document.getElementById('btnnuevo');
 
-btnnuevo.addEventListener('click', () => {
-    window.location.href= "/dash/ingresarnotas"
-})
+
 
 fetch(portatilplus)
 .then(res => res.json())
@@ -50,32 +48,26 @@ const mostrar = (data) =>{
     }
     document.getElementById('data').innerHTML = body;
 }
-function editRow(button) {
+function agregarnotas(e) {
     // Obtener la fila correspondiente al botón de edición
-    const row = button.parentElement.parentElement;
+    const row = e.parentElement.parentElement;
 
     // Obtener los datos de la fila
-    const name = row.cells[0].innerText;
-    const age = row.cells[1].innerText;
+    const tarea = row.cells[0].innerText;
+    const notas = row.cells[1].innerText;
+    const prioridad = row.cells[2].innerText;
+    const estado = row.cells[3].innerText;
 
     // Guardar los datos en localStorage
-    localStorage.setItem('editName', name);
-    localStorage.setItem('editAge', age);
-
+    localStorage.setItem('edittarea', tarea);
+    localStorage.setItem('editnota', notas);
+    localStorage.setItem('editprioridad', prioridad);
+    localStorage.setItem('editestado', estado);
+    
     // Redirigir a la página de edición
-    window.location.href = 'edit.html';
+    window.location.href = '/dash/ingresarnotas';
 }
 
-// function enviarnota(idnotas, tarea, notas, prioridad, estado) {
-
-
-//     localStorage.setItem('tareaform',tarea);
-//     localStorage.setItem('notasform',notas);
-//     localStorage.setItem('prioridadform',prioridad);
-//     localStorage.setItem('estadoform',estado);
-//     // redirigi
-//     window.location.href= "/dash/ingresarnotas"
-// }
 
 
 // borrar notas

@@ -70,16 +70,14 @@ const mostrar = (data) =>{
 //     window.location.href = '/dash/ingresarnotas';
 // }
 
-// function enviarnota(idnotas, tarea, notas, prioridad, estado) {
-
-
-//     localStorage.setItem('tareaform',tarea);
-//     localStorage.setItem('notasform',notas);
-//     localStorage.setItem('prioridadform',prioridad);
-//     localStorage.setItem('estadoform',estado);
-//     // redirigi
-//     window.location.href= "/dash/ingresarnotas"
-// }
+function enviarnota(idnotas, tarea, notas, prioridad, estado) {
+    sessionStorage.setItem('idnotas', idnotas);
+    sessionStorage.setItem('tarea', tarea);
+    sessionStorage.setItem('notas', notas);
+    sessionStorage.setItem('prioridad', prioridad);
+    sessionStorage.setItem('estado', estado);
+    window.location.href = "/dash/ingresarnotas";
+}
 
 
 // borrar notas

@@ -1,14 +1,8 @@
-
-
 const url = document.getElementById("url").value;
-
 sessionStorage.setItem("portatilplus", url);
-
 const portatilplus = sessionStorage.getItem("portatilplus")+"/admin/notas/";
 
-
 const btnnuevo = document.getElementById('btnnuevo');
-
 btnnuevo.addEventListener('click', () => {
     window.location.href= "/dash/ingresarnotas"
 })
@@ -26,62 +20,57 @@ fetch(portatilplus)
 
 
 // datos
-
-
-
 const mostrar = (data) =>{
-    console.log(data);
     let body = ''
     for(let i = 0; i<data.length; i++){
         body += `
         <tr>
-            <td class="marca">${data[i].idnotas}</td>
-            <td class="marca">${data[i].tarea}</td>
+            <td>${data[i].idnotas}</td>
+            <td class="tarea">${data[i].tarea}</td>
             <td>${data[i].notas}</td>
-            <td>${data[i].prioridad}</td>
-            <td class="estado">${data[i].estado}</td>
+            <td class = "prioridad">${data[i].prioridad}</td>
+            <td class="estado">
+                <select name="" id="prioridad" class="form">
+                    <option value="pendiente" id="prioridad" class="form">Pendiente</option>
+                    <option value="completado" id="prioridad" class="form">Completado</option>
+                </select>
+          </td>
             <td class="btn-container">
-                <i class='bx bx-edit btneditar' onclick="enviarnota('${data[i].idnotas}',
-                '${data[i].tarea}','${data[i].notas}', 
-                '${data[i].prioridad}','${data[i].estado}');"></i>
+                <i class='bx bx-edit btneditar' onclick="enviarnota(event);"></i>
                 <i class='bx bx-trash btnborrar'></i>
             </td>
         </tr>`;
     }
     document.getElementById('data').innerHTML = body;
 }
-// function editRow(button) {
-//     // Obtener la fila correspondiente al botón de edición
-//     const row = button.parentElement.parentElement;
 
-//     // Obtener los datos de la fila
-//     const tarea = row.cells[0].innerText;
-//     const notas = row.cells[1].innerText;
-//     const prioridad = row.cells[2].innerText;
-//     const estado = row.cells[3].innerText;
 
-//     // Guardar los datos en localStorage
-//     localStorage.setItem('edittarea', tarea);
-//     localStorage.setItem('editnota', notas);
-//     localStorage.setItem('editprioridad', prioridad);
-//     localStorage.setItem('editestado', estado);
+// editar notas
+
+function enviarnota(event) {
+    const fila = event.target.parentElement.parentElement;
+    const idnotas = fila.cells[0].innerText;
+    const tarea = fila.cells[1].innerText;
+    const notas = fila.cells[2].innerText;
+    const prioridad = fila.cells[3].innerText;
+    const estado = fila.cells[4].innerText;
+
+
+    console.log(idnotas);
+    console.log(tarea);
+    console.log(notas);
+    console.log(prioridad);
+    console.log(estado);
     
-//     // Redirigir a la página de edición
-//     window.location.href = '/dash/ingresarnotas';
-// }
-
-function enviarnota(idnotas, tarea, notas, prioridad, estado) {
     sessionStorage.setItem('idnotas', idnotas);
-    sessionStorage.setItem('tarea', tarea);
+    sessionStorage.setItem('tareas', tarea);
     sessionStorage.setItem('notas', notas);
     sessionStorage.setItem('prioridad', prioridad);
     sessionStorage.setItem('estado', estado);
     window.location.href = "/dash/ingresarnotas";
 }
 
-
 // borrar notas
-
 const on = (element, event, selector, handler)=>{
     element.addEventListener(event, (e)=>{
         if(e.target.closest(selector)){
@@ -135,3 +124,25 @@ on(document, 'click', '.btnborrar', e=>{
       });
 })
 
+
+// buscador crud
+document.getElementById('buscador').addEventListener('keyup', e => {
+    const query = e.target.value.toLowerCase();
+    document.querySelectorAll('#data tr').forEach(row => {
+        const tarea = row.querySelector('.tarea').textContent.toLowerCase();
+        const prioridad = row.querySelector('.prioridad').textContent.toLowerCase();
+        if (tarea.includes(query)|| !prioridad.includes(query)) {
+            row.classList.remove('filtro')
+        } else {
+            row.classList.add('filtro')
+        }
+    });
+});
+
+const style = document.createElement('style');
+style.innerHTML = `
+    .filtro {
+        display: none;
+    }
+`;
+document.head.appendChild(style);

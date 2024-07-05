@@ -28,7 +28,7 @@ const mostrar = (data) =>{
         body += `
             <tr>
                 <td>${data[i].id_registro}</td>
-                <td>${data[i].nombre}</td>
+                <td class= "nombre">${data[i].nombre}</td>
                 <td>${data[i].apellido}</td>
                 <td>${data[i].telefono}</td>
                 <td class= "correo">${data[i].correo}</td>
@@ -50,7 +50,8 @@ document.getElementById('buscador').addEventListener('keyup', e => {
     const query = e.target.value.toLowerCase();
     document.querySelectorAll('#data tr').forEach(row => {
         const correo = row.querySelector('.correo').textContent.toLowerCase();
-        if (correo.includes(query)){
+        const nombre = row.querySelector('.nombre').textContent.toLowerCase();
+        if (correo.includes(query)|| nombre.includes(query)){
             row.classList.remove('filtro');
         } else {
             row.classList.add('filtro');

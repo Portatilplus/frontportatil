@@ -28,21 +28,21 @@
         <div class="mb-3">
           <label for="message-text" class="col-form-label">Prioridad:</label>
           <select name="" id="" class="form">
-              <option value="" id="prioridad" class="form">Alta</option>
-              <option value="" id="prioridad" class="form">Media</option>
-              <option value="" id="prioridad" class="form">Baja</option>
+              <option value="Alta" id="prioridad" class="form">Alta</option>
+              <option value="Media" id="prioridad" class="form">Media</option>
+              <option value="Baja" id="prioridad" class="form">Baja</option>
           </select>
         </div>
         <div class="mb-3">
           <label for="message-text" class="col-form-label">Estado:</label>
           <select name="" id="" class="form">
-              <option value="estado" id="estado" class="form">Pendiente</option>
+              <option value="Pendiente" id="estado" class="form">Pendiente</option>
           </select>
         </div>
       </div>
       <div class="modal-footer">
-          <button type="button" class="btn btn-secondary">Cancelar</button>
-          <button type="button" class="btn btn-success">Agregar</button>
+          <button type="button" class="btn btn-secondary" id="cancelar" onclick="editar();">Cancelar</button>
+          <button type="button" class="btn btn-success" onclick="agregar();">Agregar</button>
           <input type="hidden" id="url" value="<%= url %>">
       </div>
     </form> 

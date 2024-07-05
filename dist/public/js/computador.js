@@ -159,8 +159,26 @@ formcompu.addEventListener('submit', (e) => {
         fetch(portatilplus, options)
             .then(res => res.json())
             .then(data => {
-                mostrar(data.body);
-                location.reload();
+                
+                if(data.error == false){
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Computador agregado Correctamente",
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                    setTimeout(function () {
+                       mostrar(data.body);
+                        location.reload();
+                    }, 1000);
+                }else{
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Error al agregar Computador!",
+                    })
+                }
             })
     }
     if (opcion == 'editar') {
@@ -181,23 +199,23 @@ formcompu.addEventListener('submit', (e) => {
         fetch(portatilplus, options)
             .then(res => res.json())
             .then(data => {
-                if (data.error == true) {
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "Error al Editar!",
-                    })
-                } else {
+                if(data.error == false){
                     Swal.fire({
                         position: "center",
                         icon: "success",
-                        title: "Registro Editado Correctamente",
+                        title: "Computador editado Correctamente",
                         showConfirmButton: false,
                         timer: 3000
                     });
                     setTimeout(function () {
                         location.reload();
                     }, 1000);
+                }else{
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Error al editar computador!",
+                    })
                 }
             })
     }

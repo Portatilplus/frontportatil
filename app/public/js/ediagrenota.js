@@ -24,21 +24,20 @@ const optios = {
         'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-        tarea,
-        nota,
-        prioridad,
-        estado
+        tarea: tarea,
+        notas: nota,
+        prioridad: prioridad,
+        estado:estado
     })
 }
 fetch(portatilplus,optios)
 .then(res => res.json())
 .then(data => {
     // if(!tarea || !nota || !prioridad || !estado){
-    //     Swal.fire("Campos vacios!");
-    //     return;
-
-    // }
-    window.location.href ="/dash/notas";
+        //     return;
+        //     Swal.fire("Campos vacios!");
+        // }
+        window.location.href ="/dash/notas";
 })
 
 

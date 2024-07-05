@@ -1,40 +1,40 @@
 const url = document.getElementById("url").value;
 sessionStorage.setItem("portatilplus", url);
-const portatilplus = sessionStorage.getItem("portatilplus")+"/admin/notas/";
+const portatilplus = sessionStorage.getItem("portatilplus") + "/admin/notas/";
 
 const btnnuevo = document.getElementById('btnnuevo');
 btnnuevo.addEventListener('click', () => {
-    window.location.href= "/dash/ingresarnotas"
+    window.location.href = "/dash/ingresarnotas"
 })
 
 fetch(portatilplus)
-.then(res => res.json())
-.then(data =>{
-    if(data.error){
-        console.log("error en el fetch", data);
-    }else{
-        mostrar(data.body[0]);
-    }
-})
-.catch(error => {console.log(error)})
+    .then(res => res.json())
+    .then(data => {
+        if (data.error) {
+            console.log("error en el fetch", data);
+        } else {
+            mostrar(data.body[0]);
+        }
+    })
+    .catch(error => { console.log(error) })
 
 
 // datos
-const mostrar = (data) =>{
+const mostrar = (data) => {
     let body = ''
-    for(let i = 0; i<data.length; i++){
+    for (let i = 0; i < data.length; i++) {
         body += `
         <tr>
             <td>${data[i].idnotas}</td>
             <td class="tarea">${data[i].tarea}</td>
             <td>${data[i].notas}</td>
-            <td class = "prioridad">${data[i].prioridad}</td>
+            <td class="prioridad">${data[i].prioridad}</td>
             <td class="estado">
-                <select name="" id="prioridad" class="form">
-                    <option value="pendiente" id="prioridad" class="form">Pendiente</option>
-                    <option value="completado" id="prioridad" class="form">Completado</option>
+                <select name="estado" class="estado-select form" onchange="cambiarEstado(event, ${data[i].idnotas})">
+                    <option value="Pendiente" ${data[i].estado === 'Pendiente' ? 'selected' : ''} class="form">Pendiente</option>
+                    <option value="Completado" ${data[i].estado === 'Completado' ? 'selected' : ''} class="form">Completado</option>
                 </select>
-          </td>
+            </td>
             <td class="btn-container">
                 <i class='bx bx-edit btneditar' onclick="enviarnota(event);"></i>
                 <i class='bx bx-trash btnborrar'></i>
@@ -44,9 +44,54 @@ const mostrar = (data) =>{
     document.getElementById('data').innerHTML = body;
 }
 
+// Cambiar estado
+function cambiarEstado(event, idnotas) {
+    const estado = event.target.value;
+    if (estado === 'Completado') {
+        Swal.fire({
+            title: "Estas Seguro?",
+            text: "Esta acción eliminará la tarea.",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Si, eliminar!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(portatilplus + idnotas, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.error) {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Oops...",
+                                text: "Hubo un problema al eliminar la tarea!",
+                            });
+                        } else {
+                            Swal.fire({
+                                title: "Eliminado!",
+                                text: "La tarea ha sido eliminada.",
+                                icon: "success"
+                            }).then(() => {
+                                location.reload();
+                            })
+                        }
+                    })
+                    .catch(error => console.error(error));
+            } else {
+                // Revertir al estado anterior si el usuario cancela la eliminación
+                event.target.value = 'Pendiente';
+            }
+        });
+    }
+}
 
 // editar notas
-
 function enviarnota(event) {
     const fila = event.target.parentElement.parentElement;
     const idnotas = fila.cells[0].innerText;
@@ -55,34 +100,27 @@ function enviarnota(event) {
     const prioridad = fila.cells[3].innerText;
     const estado = fila.cells[4].innerText;
 
-
-    console.log(idnotas);
-    console.log(tarea);
-    console.log(notas);
-    console.log(prioridad);
-    console.log(estado);
-    
     sessionStorage.setItem('idnotas', idnotas);
-    sessionStorage.setItem('tareas', tarea);
+    sessionStorage.setItem('tarea', tarea);
     sessionStorage.setItem('notas', notas);
     sessionStorage.setItem('prioridad', prioridad);
     sessionStorage.setItem('estado', estado);
+
     window.location.href = "/dash/ingresarnotas";
 }
 
 // borrar notas
-const on = (element, event, selector, handler)=>{
-    element.addEventListener(event, (e)=>{
-        if(e.target.closest(selector)){
+const on = (element, event, selector, handler) => {
+    element.addEventListener(event, (e) => {
+        if (e.target.closest(selector)) {
             handler(e);
         }
     });
 }
 
-on(document, 'click', '.btnborrar', e=>{
+on(document, 'click', '.btnborrar', e => {
     const fila = e.target.parentNode.parentNode;
     const idnotas = fila.firstElementChild.innerHTML;
-    
 
     Swal.fire({
         title: "Estas Seguro?",
@@ -92,38 +130,36 @@ on(document, 'click', '.btnborrar', e=>{
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         confirmButtonText: "Si, eliminar!"
-      }).then((result) => {
+    }).then((result) => {
         if (result.isConfirmed) {
             fetch(portatilplus + idnotas, {
                 method: "DELETE",
-                headers:{
+                headers: {
                     "Content-Type": "application/json"
                 }
             })
-            .then(res => res.json())
-            .then(data => {
-                if(data.error){
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "Hubo un problema al eliminar sancion!",
-                      });
-                }else{
-                    Swal.fire({
-                        title: "Eliminado!",
-                        text: "La sancion ha sido eliminada.",
-                        icon: "success"
-                      }).then(()=>{
-                        location.reload()
-                      })
-                }
-            })
-            .catch(error => console.error(error));
-
+                .then(res => res.json())
+                .then(data => {
+                    if (data.error) {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "Hubo un problema al eliminar la tarea!",
+                        });
+                    } else {
+                        Swal.fire({
+                            title: "Eliminado!",
+                            text: "La tarea ha sido eliminada.",
+                            icon: "success"
+                        }).then(() => {
+                            location.reload();
+                        })
+                    }
+                })
+                .catch(error => console.error(error));
         }
-      });
+    });
 })
-
 
 // buscador crud
 document.getElementById('buscador').addEventListener('keyup', e => {
@@ -131,7 +167,7 @@ document.getElementById('buscador').addEventListener('keyup', e => {
     document.querySelectorAll('#data tr').forEach(row => {
         const tarea = row.querySelector('.tarea').textContent.toLowerCase();
         const prioridad = row.querySelector('.prioridad').textContent.toLowerCase();
-        if (tarea.includes(query)|| !prioridad.includes(query)) {
+        if (tarea.includes(query) || prioridad.includes(query)) {
             row.classList.remove('filtro')
         } else {
             row.classList.add('filtro')

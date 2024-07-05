@@ -38,7 +38,6 @@ fetch(portatilplus,optios)
     //     return;
 
     // }
-    mostrar(data.body)
     window.location.href ="/dash/notas";
 })
 

@@ -12,7 +12,7 @@ rutahome.get("/historial", navegacion.historial);
 rutahome.get("/reserva", navegacion.historialreservas);
 
 // historial
-rutahome.get("/retiro", navegacion.regretiro);
+rutahome.get("/notificaciones", navegacion.correos);
 rutahome.get("/sanciones", navegacion.sanciones);
 rutahome.get("/accesorio", navegacion.accesorios);
 rutahome.get("/computador", navegacion.computadores);

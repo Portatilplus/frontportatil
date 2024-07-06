@@ -84,7 +84,6 @@ function cambiarEstado(event, idnotas) {
                     })
                     .catch(error => console.error(error));
             } else {
-                // Revertir al estado anterior si el usuario cancela la eliminación
                 event.target.value = 'Pendiente';
             }
         });

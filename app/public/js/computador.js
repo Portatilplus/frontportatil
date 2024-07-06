@@ -258,3 +258,19 @@ style.innerHTML = `
     }
 `;
 document.head.appendChild(style);
+
+
+// friltros
+// document.getElementById('filtroestado').addEventListener('change', e => {
+//     const estado = e.target.value.toLowerCase();
+
+//     document.querySelectorAll('#data tr').forEach(row => {
+//         const estadoactual = row.querySelector('.estado').textContent.toLowerCase();
+
+//        if(estado === 'Todos'||estadoactual === estado || estadoactual === estado){
+//         row.classList.remove('filtro');
+//        }else{
+//         row.classList.add('filtro');
+//        }
+//     });
+// });

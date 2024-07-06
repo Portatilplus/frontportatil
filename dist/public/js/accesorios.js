@@ -1,8 +1,3 @@
-
-const url = document.getElementById("url").value;
-
-sessionStorage.setItem("portatilplus", url);
-
 const portatilplus = sessionStorage.getItem("portatilplus")+"/admin/accesorio/";
 
 // url

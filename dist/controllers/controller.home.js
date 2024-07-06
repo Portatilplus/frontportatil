@@ -36,13 +36,13 @@ const historialreservas = (req, res) =>{
 
 // historial
 
-const regretiro = (req, res)=>{
+const correos = (req, res)=>{
     const url = process.env.BACK_URL;
     const options ={
         url:url
     };
 
-    res.render("view.nav.retiro.ejs",options)
+    res.render("view.nav.correos.ejs",options)
 }
 const sanciones = (req, res)=>{
     const url = process.env.BACK_URL;
@@ -94,7 +94,7 @@ export const navegacion = {
     inicio,
     estado,
     historial,
-    regretiro,
+    correos,
     sanciones,
     accesorios,
     computadores,

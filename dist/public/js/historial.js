@@ -1,8 +1,4 @@
 // url de historial
-const url = document.getElementById("url").value;
-
-sessionStorage.setItem("portatilplus", url);
-
 const portatilplus = sessionStorage.getItem("portatilplus")+"/admin/historial";
 
 
@@ -22,7 +18,6 @@ fetch(portatilplus)
 
 
 const mostrar = (data) =>{
-    console.log(data);
     let body = ''
     for(let i = 0; i<data.length; i++){
         body += `
@@ -33,7 +28,7 @@ const mostrar = (data) =>{
                 <td>${data[i].telefono}</td>
                 <td class= "correo">${data[i].correo}</td>
                 <td>
-                    <button class="btn btn-success btndatos" id="btndatos">Ver datos</button>
+                    <button class="btn btn-success btndatos" id="btndatos">Retirar</button>
                 </td>
             </tr>
         `

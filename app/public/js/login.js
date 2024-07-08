@@ -27,20 +27,18 @@ const logueo =  async()=>{
                 title: "Oops...",
                 text: "Correo o Contraseña Incorrecta!",
               });
-        }else{
-
-            Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "Bienvenido",
-                showConfirmButton: false,
-                timer: 1500
-            });
+        }else{ 
             sessionStorage.setItem("token", data.body.token);
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Bienvenido",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
                 setTimeout(function () {
                     window.location.href = "/dash";
-                }, 1000);
-            
+                }, 1000); 
         }
     })
     .catch(err=>{

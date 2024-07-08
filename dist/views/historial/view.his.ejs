@@ -13,7 +13,6 @@
     <%- include('../partials/view.nav.head.ejs')  %>
 
     <main class="container">
-
         <div class="opc__header">
             <h1>Historial de Reservas</h1>
             <div class="search">
@@ -24,26 +23,11 @@
         
         <div class="contenedor__Lista">
             <ul class="listas" id="data">
-                <!-- <li>
-                    <div class="cartas">
-                        <div class="img__container">
-                            <img src="../img/sena.png" alt="" width="100" height="100">
-                            <p></p>
-                            <p>ID</p>
-                        </div>
-                        <div class="info">
-                            <h1>Nombre</h1>
-                            <p>Estado</p>
-                            <p>Area</p>
-                            <p>Fecha</p>
-                        </div>
-                    </div>
-                </li> -->
             </ul>
         </div>
         <input type="hidden" id="url" value="<%= url %>">
-
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/hisreserva.js"></script>
 </body>
 </html>

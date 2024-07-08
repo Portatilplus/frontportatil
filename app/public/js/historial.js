@@ -27,8 +27,10 @@ const mostrar = (data) =>{
                 <td>${data[i].apellido}</td>
                 <td>${data[i].telefono}</td>
                 <td class= "correo">${data[i].correo}</td>
+                <td class= "correo">${data[i].rol}</td>
+                <td class= "correo">${data[i].estado}</td>
                 <td>
-                    <button class="btn btn-success btndatos" id="btndatos">Retirar</button>
+                    <button class="btn btn-success btndatos" id="btndatos">bloquear</button>
                 </td>
             </tr>
         `

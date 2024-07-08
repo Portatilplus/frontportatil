@@ -7,14 +7,33 @@ const inicio = (req, res)=>{
     res.render("view.nav.dash.ejs")
 // , {tokenprivate}
 }
-const estado = (req, res)=>{
+const pazysalvo = (req, res)=>{
     const url = process.env.BACK_URL;
     const options ={
         url:url
     };
     
-    res.render("view.nav.estado.ejs", options)
+    res.render("view.nav.paz.ejs", options)
 }
+const listarpazysalvo = (req, res)=>{
+    const url = process.env.BACK_URL;
+    const options ={
+        url:url
+    };
+    
+    res.render("historial/view.paz.ejs", options)
+}
+const editarpazysalvo = (req, res)=>{
+    const url = process.env.BACK_URL;
+    const options ={
+        url:url
+    };
+    
+    res.render("editar.paz.ejs", options)
+}
+
+
+
 const historial = (req, res)=>{
     const url = process.env.BACK_URL;
     const options ={
@@ -43,6 +62,15 @@ const correos = (req, res)=>{
     };
 
     res.render("view.nav.correos.ejs",options)
+}
+
+const politicas = (req, res)=>{
+    const url = process.env.BACK_URL;
+    const options ={
+        url:url
+    };
+
+    res.render("politica.ejs",options)
 }
 const sanciones = (req, res)=>{
     const url = process.env.BACK_URL;
@@ -84,6 +112,15 @@ const ingrenota = (req, res)=>{
 
     res.render("view.notaingre.ejs", options);
 }
+// }edutar
+const editarnota = (req, res)=>{
+    const url = process.env.BACK_URL;
+    const options ={
+        url:url
+    };
+
+    res.render("view.editar.nota.ejs", options);
+}
 
 
 
@@ -92,13 +129,17 @@ const ingrenota = (req, res)=>{
 
 export const navegacion = {
     inicio,
-    estado,
+    pazysalvo,
+    listarpazysalvo,
+    editarpazysalvo,
     historial,
     correos,
+    politicas,
     sanciones,
     accesorios,
     computadores,
     historialreservas,
     notas,
-    ingrenota
+    ingrenota,
+    editarnota
 }

@@ -15,9 +15,11 @@ const agregar = () =>{
     const prioridad = document.getElementById("prioridad").value;
     const estado = document.getElementById("estado").value;
 
-    // if(!tarea||!notas||!prioridad||!estado){
-    //     Swal.fire("Campos vacios!");
-    // }
+    if (!tarea || !notas || !prioridad || !estado) {
+        Swal.fire("Campos vacíos!");
+        return; 
+    }
+   
 
     const options = {
         method: 'POST',
@@ -32,10 +34,12 @@ const agregar = () =>{
         })
     }
    
+   
     fetch(portatilplus, options)
     .then(res => res.json())
     .then(data => {
         if(data.error == false){
+
             Swal.fire({
                 position: "center",
                 icon: "success",
@@ -59,13 +63,6 @@ const agregar = () =>{
 
 // editar nota
 
-const editar = () =>{
-    document.getElementById('tareas').value = localStorage.getItem('tareas')
-    document.getElementById('notas').value = localStorage.getItem('notas')
-    document.getElementById('prioridad').value = localStorage.getItem('prioridad')
-    document.getElementById('estado').value = localStorage.getItem('estado')
 
-    console.log(localStorage.getItem('tarea'));
-}
 
 

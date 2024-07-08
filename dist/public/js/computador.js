@@ -14,7 +14,6 @@ const marca = document.getElementById('marca');
 const modelo = document.getElementById('modelo');
 const estado = document.getElementById('estado');
 const area = document.getElementById('area');
-const fecha = document.getElementById('fecha');
 let opcion = '';
 
 btnnuevo.addEventListener('click', () => {
@@ -22,7 +21,6 @@ btnnuevo.addEventListener('click', () => {
     modelo.value = '';
     estado.value = '';
     area.value = '';
-    fecha.value = '';
     modalcompu.show();
     opcion = 'nuevo';
 });
@@ -50,7 +48,6 @@ const mostrar = (data) => {
             <td>${data[i].modelo}</td>
             <td class="estado">${data[i].estado}</td>
             <td class="area">${data[i].area}</td>
-            <td>${data[i].fecha}</td>
             <td class="btn-container">
                 <i class='bx bx-edit btneditar'></i>
                 <i class='bx bx-trash btnborrar'></i>
@@ -121,13 +118,11 @@ on(document, 'click', '.btneditar', e => {
     const modeloform = fila.children[2].innerHTML;
     const estadoform = fila.children[3].innerHTML;
     const areaform = fila.children[4].innerHTML;
-    const fechaform = fila.children[5].innerHTML;
     // mandarlos al formulario
     marca.value = marcaform;
     modelo.value = modeloform;
     estado.value = estadoform;
     area.value = areaform;
-    fecha.value = fechaform;
     opcion = 'editar';
     modalcompu.show();
 })
@@ -153,7 +148,6 @@ formcompu.addEventListener('submit', (e) => {
                 modelo: modelo.value,
                 estado: estado.value,
                 area: area.value,
-                fecha: fecha.value,
             })
         }
         fetch(portatilplus, options)
@@ -193,7 +187,7 @@ formcompu.addEventListener('submit', (e) => {
                 modelo: modelo.value,
                 estado: estado.value,
                 area: area.value,
-                fecha: fecha.value,
+                
             })
         }
         fetch(portatilplus, options)
@@ -222,16 +216,6 @@ formcompu.addEventListener('submit', (e) => {
 })
 
 // reporte
-// const reporte = async () =>{
-//     const workbook = await XlsxPopulate.fromBlankAsync()
-//     workbook.sheet(0).cell('A1').value('#');
-//     workbook.sheet(0).cell('B1').value('Marca');
-//     workbook.sheet(0).cell('C1').value('Modelo');
-//     workbook.sheet(0).cell('D1').value('Estado');
-//     workbook.sheet(0).cell('E1').value('Area');
-//     workbook.sheet(0).cell('F1').value('Fecha');
-//     return workbook.toFileAsync("/dash")
-// }
 
 // buscador
 document.getElementById('buscador').addEventListener('keyup', e => {

@@ -7,6 +7,7 @@ fetch(portatilplus)
         console.error("Error al mostrar los datos", data);
     }else{
         mostrarEstadisticas(data.body[0]);
+
     }
 })
 .catch(error => console.log("error al mostrar los datos", error))
@@ -21,6 +22,7 @@ const mostrarEstadisticas = (data) => {
             <hr>
             <p class="card-text">Disponibles: ${data[i].cantidad}</p>
         `;
+
     }
     document.getElementById('data').innerHTML = body;
     

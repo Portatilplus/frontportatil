@@ -1,11 +1,9 @@
-const url = document.getElementById("url").value;
-sessionStorage.setItem("portatilplus", url);
 const portatilplus = sessionStorage.getItem("portatilplus") + "/admin/notas/";
 
 const btnnuevo = document.getElementById('btnnuevo');
 btnnuevo.addEventListener('click', () => {
-    window.location.href = "/dash/ingresarnotas"
-})
+    window.location.href = "/dash/ingresarnotas";
+});
 
 fetch(portatilplus)
     .then(res => res.json())
@@ -16,12 +14,11 @@ fetch(portatilplus)
             mostrar(data.body[0]);
         }
     })
-    .catch(error => { console.log(error) })
-
+    .catch(error => { console.log(error); });
 
 // datos
 const mostrar = (data) => {
-    let body = ''
+    let body = '';
     for (let i = 0; i < data.length; i++) {
         body += `
         <tr>
@@ -36,26 +33,36 @@ const mostrar = (data) => {
                 </select>
             </td>
             <td class="btn-container">
-                <i class='bx bx-edit btneditar' onclick="enviarnota(event);"></i>
+                <i class='bx bx-edit btneditar' onclick="editar('${data[i].idnotas}','${data[i].tarea}','${data[i].notas}','${data[i].prioridad}','${data[i].estado}');"></i>
                 <i class='bx bx-trash btnborrar'></i>
             </td>
         </tr>`;
     }
     document.getElementById('data').innerHTML = body;
-}
+};
 
+// editar notas
+function editar(idnotas,tarea,notas,prioridad,estado){
+    localStorage.setItem('edittarea',tarea)
+    localStorage.setItem('editnotas',notas)
+    localStorage.setItem('editprioridad',prioridad)
+    localStorage.setItem('editestado',estado)
+    localStorage.setItem('editidnotas',idnotas)
+
+    window.location.href = "/dash/editarnotas";
+}
 // Cambiar estado
 function cambiarEstado(event, idnotas) {
     const estado = event.target.value;
     if (estado === 'Completado') {
         Swal.fire({
-            title: "Estas Seguro?",
+            title: "¿Estás seguro?",
             text: "Esta acción eliminará la tarea.",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Si, eliminar!"
+            confirmButtonText: "Sí, eliminar!"
         }).then((result) => {
             if (result.isConfirmed) {
                 fetch(portatilplus + idnotas, {
@@ -79,7 +86,7 @@ function cambiarEstado(event, idnotas) {
                                 icon: "success"
                             }).then(() => {
                                 location.reload();
-                            })
+                            });
                         }
                     })
                     .catch(error => console.error(error));
@@ -90,24 +97,6 @@ function cambiarEstado(event, idnotas) {
     }
 }
 
-// editar notas
-function enviarnota(event) {
-    const fila = event.target.parentElement.parentElement;
-    const idnotas = fila.cells[0].innerText;
-    const tarea = fila.cells[1].innerText;
-    const notas = fila.cells[2].innerText;
-    const prioridad = fila.cells[3].innerText;
-    const estado = fila.cells[4].innerText;
-
-    sessionStorage.setItem('idnotas', idnotas);
-    sessionStorage.setItem('tarea', tarea);
-    sessionStorage.setItem('notas', notas);
-    sessionStorage.setItem('prioridad', prioridad);
-    sessionStorage.setItem('estado', estado);
-
-    window.location.href = "/dash/ingresarnotas";
-}
-
 // borrar notas
 const on = (element, event, selector, handler) => {
     element.addEventListener(event, (e) => {
@@ -115,20 +104,20 @@ const on = (element, event, selector, handler) => {
             handler(e);
         }
     });
-}
+};
 
 on(document, 'click', '.btnborrar', e => {
     const fila = e.target.parentNode.parentNode;
     const idnotas = fila.firstElementChild.innerHTML;
-
+    console.log(idnotas);
     Swal.fire({
-        title: "Estas Seguro?",
-        text: "No podras revertirlo",
+        title: "¿Estás seguro?",
+        text: "No podrás revertir esto.",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Si, eliminar!"
+        confirmButtonText: "Sí, eliminar!"
     }).then((result) => {
         if (result.isConfirmed) {
             fetch(portatilplus + idnotas, {
@@ -152,24 +141,24 @@ on(document, 'click', '.btnborrar', e => {
                             icon: "success"
                         }).then(() => {
                             location.reload();
-                        })
+                        });
                     }
                 })
                 .catch(error => console.error(error));
         }
     });
-})
+});
 
-// buscador crud
+// buscador CRUD
 document.getElementById('buscador').addEventListener('keyup', e => {
     const query = e.target.value.toLowerCase();
     document.querySelectorAll('#data tr').forEach(row => {
         const tarea = row.querySelector('.tarea').textContent.toLowerCase();
         const prioridad = row.querySelector('.prioridad').textContent.toLowerCase();
         if (tarea.includes(query) || prioridad.includes(query)) {
-            row.classList.remove('filtro')
+            row.classList.remove('filtro');
         } else {
-            row.classList.add('filtro')
+            row.classList.add('filtro');
         }
     });
 });

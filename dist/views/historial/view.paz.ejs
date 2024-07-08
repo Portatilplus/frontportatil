@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paz y salvo</title>
+    <link rel="icon" href="/img/sena.png">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"rel="stylesheet"/>
+  <link rel="stylesheet" href="../../css/paz.css">
+
+</head>
+<body>
+    <%- include('../partials/view.nav.head.ejs')  %>
+
+    <main class="container">
+
+        <div class="opc__header">
+            <h1>Historial de Reservas</h1>
+            <div class="search">
+                <input type="search" id="buscador" class="buscador" placeholder="Buscar">
+            </div>
+        </div>
+        <!-- contenido donde se muestre la tabla o el contenido -->
+        <div class="contenedor__Lista">
+            <ul class="listas" id="data">
+                <!-- <li>
+                    <div class="cartas">
+                        <div class="img__container">
+                            <p>12345</p>
+                            <a href="#" class="icon-pdf"><i class='bx bxs-file-pdf'></i></a>
+                        </div>
+                        <div class="info">
+                            <h1>Juan Pérez</h1>
+                            <p>Teléfono: 123456789</p>
+                            <p>Sanción: No</p>
+                            <p>Fecha: 2024-07-07</p>
+                            <p>Descripción: Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+                        </div>
+                        <div class="btn-container">
+                            <button class="btn btn-success btn-sm">Ver Detalles</button>
+                            <i class='bx bx-trash btnborrar'></i>
+
+                        </div>
+                    </div>
+                </li> -->
+        </div>
+        <input type="hidden" id="url" value="<%= url %>">
+
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../js/paz.js"></script>
+</body>
+</html>

@@ -62,6 +62,7 @@ body {
 .cartas{
     width: 300px;
     height: 230px;
+    padding: 20px;
     background-color: rgba(128, 128, 128, 0.699);
     border-radius: 20px;
     box-shadow: 5px 5px rgba(109, 114, 108, 0.562);

@@ -64,14 +64,7 @@ const correos = (req, res)=>{
     res.render("view.nav.correos.ejs",options)
 }
 
-const politicas = (req, res)=>{
-    const url = process.env.BACK_URL;
-    const options ={
-        url:url
-    };
 
-    res.render("politica.ejs",options)
-}
 const sanciones = (req, res)=>{
     const url = process.env.BACK_URL;
     const options ={
@@ -121,6 +114,14 @@ const editarnota = (req, res)=>{
 
     res.render("view.editar.nota.ejs", options);
 }
+const notascompletas = (req, res)=>{
+    const url = process.env.BACK_URL;
+    const options ={
+        url:url
+    };
+
+    res.render("historial/notas.completas.ejs", options);
+}
 
 
 
@@ -134,12 +135,12 @@ export const navegacion = {
     editarpazysalvo,
     historial,
     correos,
-    politicas,
     sanciones,
     accesorios,
     computadores,
     historialreservas,
     notas,
     ingrenota,
-    editarnota
+    editarnota,
+    notascompletas
 }

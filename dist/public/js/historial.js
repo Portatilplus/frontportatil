@@ -29,14 +29,13 @@ const mostrar = (data) =>{
                 <td class= "correo">${data[i].correo}</td>
                 <td class= "correo">${data[i].rol}</td>
                 <td class= "correo">${data[i].estado}</td>
-                <td>
-                    <button class="btn btn-success btndatos" id="btndatos">bloquear</button>
-                </td>
+
             </tr>
         `
     }
     document.getElementById('data').innerHTML = body;
 }
+
 
 
 

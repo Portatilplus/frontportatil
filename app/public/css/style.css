@@ -154,25 +154,31 @@ thead{
   background-color: var(--verde);
 
 }
-i{
+.exe{
   cursor: pointer;
-  font-size: 40px;
+  font-size: 30px;
 }
 .btnb{
   margin: 10px 20px;
   font-size: 30px;
 }
 .btneditar{
-  font-size: 50px;
+  cursor: pointer;
+
 }
 .btnborrar{
-  font-size: 50px;
+cursor: pointer;
+
+}
+.btnver{
+cursor: pointer;
 
 }
 
 ::placeholder{
   color: rgba(0, 0, 0, 0.521);
 }
+
 
 
 
@@ -189,7 +195,7 @@ i{
   justify-content: center;
   margin: auto auto;
   align-items: center;
-  width: 70%;
+  width: 50%;
   height: 50%;
   border: 2px solid white;
   border-radius: 20px;
@@ -203,4 +209,7 @@ i{
 label{
   color: white;
 }
+.btnver{
+  font-size: 30px;
 
+}

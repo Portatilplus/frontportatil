@@ -23,7 +23,7 @@ const mostrar = (data) => {
         body += `
         <tr>
             <td>${data[i].idnotas}</td>
-            <td class="tarea">${data[i].tarea}</td>
+            <td class="titulo">${data[i].titulo}</td>
             <td>${data[i].notas}</td>
             <td class="prioridad">${data[i].prioridad}</td>
             <td class="estado">
@@ -33,7 +33,7 @@ const mostrar = (data) => {
                 </select>
             </td>
             <td class="btn-container">
-                <i class='bx bx-edit btneditar' onclick="editar('${data[i].idnotas}','${data[i].tarea}','${data[i].notas}','${data[i].prioridad}','${data[i].estado}');"></i>
+                <i class='bx bx-edit btneditar' onclick="editar('${data[i].idnotas}','${data[i].titulo}','${data[i].notas}','${data[i].prioridad}','${data[i].estado}');"></i>
                 <i class='bx bx-trash btnborrar'></i>
             </td>
         </tr>`;
@@ -41,9 +41,8 @@ const mostrar = (data) => {
     document.getElementById('data').innerHTML = body;
 };
 
-// editar notas
-function editar(idnotas,tarea,notas,prioridad,estado){
-    localStorage.setItem('edittarea',tarea)
+function editar(idnotas,titulo,notas,prioridad,estado){
+    localStorage.setItem('edittarea',titulo)
     localStorage.setItem('editnotas',notas)
     localStorage.setItem('editprioridad',prioridad)
     localStorage.setItem('editestado',estado)
@@ -57,7 +56,7 @@ function cambiarEstado(event, idnotas) {
     if (estado === 'Completado') {
         Swal.fire({
             title: "¿Estás seguro?",
-            text: "Esta acción eliminará la tarea.",
+            text: "Esta acción eliminará la titulo.",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
@@ -77,12 +76,12 @@ function cambiarEstado(event, idnotas) {
                             Swal.fire({
                                 icon: "error",
                                 title: "Oops...",
-                                text: "Hubo un problema al eliminar la tarea!",
+                                text: "Hubo un problema al eliminar la titulo!",
                             });
                         } else {
                             Swal.fire({
                                 title: "Eliminado!",
-                                text: "La tarea ha sido eliminada.",
+                                text: "La titulo ha sido eliminada.",
                                 icon: "success"
                             }).then(() => {
                                 location.reload();
@@ -132,12 +131,12 @@ on(document, 'click', '.btnborrar', e => {
                         Swal.fire({
                             icon: "error",
                             title: "Oops...",
-                            text: "Hubo un problema al eliminar la tarea!",
+                            text: "Hubo un problema al eliminar la titulo!",
                         });
                     } else {
                         Swal.fire({
                             title: "Eliminado!",
-                            text: "La tarea ha sido eliminada.",
+                            text: "La titulo ha sido eliminada.",
                             icon: "success"
                         }).then(() => {
                             location.reload();
@@ -153,9 +152,9 @@ on(document, 'click', '.btnborrar', e => {
 document.getElementById('buscador').addEventListener('keyup', e => {
     const query = e.target.value.toLowerCase();
     document.querySelectorAll('#data tr').forEach(row => {
-        const tarea = row.querySelector('.tarea').textContent.toLowerCase();
+        const titulo = row.querySelector('.titulo').textContent.toLowerCase();
         const prioridad = row.querySelector('.prioridad').textContent.toLowerCase();
-        if (tarea.includes(query) || prioridad.includes(query)) {
+        if (titulo.includes(query) || prioridad.includes(query)) {
             row.classList.remove('filtro');
         } else {
             row.classList.add('filtro');

@@ -14,14 +14,14 @@ rutahome.get("/paz", navegacion.listarpazysalvo);
 rutahome.get("/editarpaz", navegacion.editarpazysalvo);
 
 // historial
-rutahome.get("/politica", navegacion.politicas);
-rutahome.get("/notificaciones", navegacion.correos);
+rutahome.get("/especificaciones", navegacion.correos);
 rutahome.get("/sanciones", navegacion.sanciones);
 rutahome.get("/accesorio", navegacion.accesorios);
 rutahome.get("/computador", navegacion.computadores);
 rutahome.get("/notas", navegacion.notas);
 rutahome.get("/ingresarnotas", navegacion.ingrenota);
 rutahome.get("/editarnotas", navegacion.editarnota);
+rutahome.get("/completas", navegacion.notascompletas);
 
 
 export default rutahome

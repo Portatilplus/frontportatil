@@ -44,18 +44,30 @@ const mostrar = (data) => {
         body += `
         <tr>
             <td>${data[i].idcomputador}</td>
-            <td class="marca">${data[i].marca}</td>
-            <td>${data[i].modelo}</td>
-            <td class="estado">${data[i].estado}</td>
-            <td class="area">${data[i].area}</td>
+            <td class="marca" id="marca">${data[i].marca}</td>
+            <td id="modelo">${data[i].modelo}</td>
+            <td class="estado" id="estado">${data[i].estado}</td>
+            <td class="area" id ="area">${data[i].area}</td>
             <td class="btn-container">
                 <i class='bx bx-edit btneditar'></i>
                 <i class='bx bx-trash btnborrar'></i>
+                <i class='bx bx-show btnver' onclick="enviar('${data[i].idcomputador}','${data[i].marca}',' ${data[i].modelo}','${data[i].estado}',
+                    '${data[i].area}');"></i>
             </td>
         </tr>`;
     }
     document.getElementById('data').innerHTML = body;
 }
+function enviar(idcomputador,marca,modelo,estado,area){
+    localStorage.setItem('editmarca',marca)
+    localStorage.setItem('editmodelo',modelo)
+    localStorage.setItem('editestado',estado)
+    localStorage.setItem('editarea',area)
+    localStorage.setItem('editidcomputador',idcomputador)
+
+    window.location.href = "/dash/especificaciones";
+}
+
 
 const on = (element, event, selector, handler) => {
     element.addEventListener(event, (e) => {
@@ -131,10 +143,7 @@ on(document, 'click', '.btneditar', e => {
 formcompu.addEventListener('submit', (e) => {
     e.preventDefault()
 
-    if (!marca.value || !modelo.value || !area.value || !estado.value) {
-        Swal.fire("Campos vacios!");
-        return;
-    }
+   
 
 
     if (opcion == 'nuevo') {
@@ -251,7 +260,7 @@ document.head.appendChild(style);
 //     document.querySelectorAll('#data tr').forEach(row => {
 //         const estadoactual = row.querySelector('.estado').textContent.toLowerCase();
 
-//        if(estado === 'Todos'||estadoactual === estado || estadoactual === estado){
+//        if(estado === 'Todos'||estado === estadoactual){
 //         row.classList.remove('filtro');
 //        }else{
 //         row.classList.add('filtro');

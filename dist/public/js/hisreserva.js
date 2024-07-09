@@ -31,7 +31,7 @@ for(let i = 0; i<data.length; i++){
                             <p>${data[i].id_reserva}</p>
                         </div>
                         <div class="info">
-                            <h1>${data[i].nombre}</h1>
+                            <h3>${data[i].nombre}</h3>
                             <p>${data[i].id_accesorio}</p>
                             <p>${data[i].estado}</p>
                             <p>${data[i].fecha}</p>

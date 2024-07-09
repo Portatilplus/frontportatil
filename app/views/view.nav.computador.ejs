@@ -20,7 +20,7 @@
       <div class="opciones">
         <div class="opc-btn">
           <button class="btn btn-success" id="btnnuevo">Nuevo</button>
-          <i class='bx bx-file btnb' onclick="reporte();"></i>
+          <i class='bx bx-file btnver'onclick="generarReporteExcel();" id="btnReporteExcel"></i>
         </div>
         <div class="buscar">
             <select name="filtroestado" id="filtroestado" class="input">filtro
@@ -34,7 +34,7 @@
     </div>
   </div>
 
-  <table class="table">
+  <table class="table" id="datatable">
     <thead>
       <tr>
         <th>#</th>
@@ -79,10 +79,10 @@
             </div>
             <div class="form-group">
               <span>Área :</span>
-              <select name="area" id="area" class="form">
-                <option class="form"  value="Diseño">Diseño</option>
-                <option class="form"  value="Software">Software</option>
-                <option class="form"  value="Administracion">Administración</option>
+              <select id="area" class="form">
+                <option class="form" id="area"  value="Diseño">Diseño</option>
+                <option class="form" id="area" value="Sorftware">Sorftware</option>
+                <option class="form" id="area" value="Administracion">Administracion</option>
               </select>
             </div>
         </div>  
@@ -97,11 +97,46 @@
     </div>
   </div>
 </div> 
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
 integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="../js/computador.js"></script>
+<script>
+  const generarReporteExcel = () => {
+            const table = document.getElementById('datatable');
+            const wb = XLSX.utils.book_new();
+            const ws = XLSX.utils.table_to_sheet(table);
+
+            // Crear una tabla en el formato Excel
+            const range = XLSX.utils.decode_range(ws['!ref']);
+            const ref = XLSX.utils.encode_range(range);
+            const tableRef = { ref: ref };
+
+            ws['!autofilter'] = tableRef; // Aplicar autofiltro a la tabla
+
+            // Aplicar estilo de tabla (bordes)
+            for (let R = range.s.r; R <= range.e.r; ++R) {
+                for (let C = range.s.c; C <= range.e.c; ++C) {
+                    const cell_address = XLSX.utils.encode_cell({ c: C, r: R });
+                    if (!ws[cell_address]) continue;
+                    ws[cell_address].s = {
+                        border: {
+                            top: { style: "thin", color: { rgb: "000000" } },
+                            bottom: { style: "thin", color: { rgb: "000000" } },
+                            left: { style: "thin", color: { rgb: "000000" } },
+                            right: { style: "thin", color: { rgb: "000000" } },
+                        }
+                    };
+                }
+            }
+
+            // Agregar la hoja al libro
+            XLSX.utils.book_append_sheet(wb, ws, 'Reporte');
+
+            // Generar archivo Excel y descargar
+            XLSX.writeFile(wb, 'ReporteTabla.xlsx');
+        };
+</script>
 </body>
 </html>

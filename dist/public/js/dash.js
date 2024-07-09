@@ -21,6 +21,9 @@ const mostrarEstadisticas = (data) => {
             <h3 class="card-title">Computadores</h3>
             <hr>
             <p class="card-text">Disponibles: ${data[i].cantidad}</p>
+            <p class="card-text">Diseño: ${data[i].diseño}</p>
+            <p class="card-text">Administracion: ${data[i].administracion}</p>
+            <p class="card-text">Software: ${data[i].sorftware}</p>
         `;
 
     }

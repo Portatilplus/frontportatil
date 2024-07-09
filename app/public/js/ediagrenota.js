@@ -5,17 +5,17 @@ const portatilplus = sessionStorage.getItem("portatilplus")+"/admin/notas/";
 
 const cancelar = document.getElementById("cancelar");
 cancelar.addEventListener('click',()=>{
-    window.location.href= "/dash/notas"
+    window.location.href= "/dash/computador"
 })
 
 // agregar
 const agregar = () =>{
-    const tarea = document.getElementById("tareas").value;
+    const titulo = document.getElementById("tareas").value;
     const notas = document.getElementById("notas").value;
     const prioridad = document.getElementById("prioridad").value;
     const estado = document.getElementById("estado").value;
 
-    if (!tarea || !notas || !prioridad || !estado) {
+    if (!titulo || !notas || !prioridad || !estado) {
         Swal.fire("Campos vacíos!");
         return; 
     }
@@ -27,7 +27,7 @@ const agregar = () =>{
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            tarea: tarea,
+            titulo: titulo,
             notas: notas,
             prioridad: prioridad,
             estado: estado,

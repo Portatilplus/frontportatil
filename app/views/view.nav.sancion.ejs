@@ -19,14 +19,12 @@
     <div class="opciones">
       <div class="opc__btn">
         <button class="btn btn-success" id="btnnuevo">Nuevo</button>
-        <!-- <a href="#" class="btn btn-success">Ver historial</a> -->
+        <i class='bx bxs-file-doc exe' onclick="generarReporteExcel" id="btnReporteExcel"></i>
       </div>
       <div class="buscar">
         <input type="search" id="buscador" class="nav__link--buscar" placeholder="buscar"/>
       </div>
     </div>
-
-
 
     <table class="table">
       <thead>
@@ -56,7 +54,7 @@
                   <form action="">
                     <div class="form-group">
                          <span>Registro :</span>
-                        <input type="number" id="idregistro" class="form" placeholder="Numero Usuario">
+                        <input type="number" id="idregistro" class="form-control" placeholder="Numero Usuario" readonly>
                     </div>
                     <div class="form-group">
                         <span>Motivo :</span>
@@ -78,9 +76,64 @@
 
 </div>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/xlsx-populate@1.20.0/dist/xlsx-populate.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
 integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="../js/sanciones.js"></script>
+<script>
+   const generarReporteExcel = (data) => {
+      XlsxPopulate.fromBlankAsync()
+          .then(workbook => {
+              const sheet = workbook.sheet(0);
+
+              // Agregar encabezados
+              const headers = ["ID Sanción", "ID Registro", "Motivo"];
+              headers.forEach((header, index) => {
+                  sheet.cell(1, index + 1).value(header);
+              });
+
+              // Agregar datos
+              data.forEach((row, rowIndex) => {
+                  sheet.cell(rowIndex + 2, 1).value(row.id_sancion);
+                  sheet.cell(rowIndex + 2, 2).value(row.id_registro);
+                  sheet.cell(rowIndex + 2, 3).value(row.motivo);
+              });
+
+              // Establecer estilos opcionales
+              sheet.range("A1:C1").style({
+                  bold: true,
+                  fill: "FF00FF00" // Verde
+              });
+
+              // Descargar el archivo Excel
+              return workbook.outputAsync()
+                  .then(blob => {
+                      const url = window.URL.createObjectURL(blob);
+                      const a = document.createElement('a');
+                      a.href = url;
+                      a.download = "Reporte_Sanciones.xlsx";
+                      document.body.appendChild(a);
+                      a.click();
+                      document.body.removeChild(a);
+                  });
+          })
+          .catch(error => console.error(error));
+  };
+
+  // BOTÓN PARA GENERAR REPORTE
+  const btnReporteExcel = document.getElementById('btnReporteExcel');
+  btnReporteExcel.addEventListener('click', () => {
+      fetch(portatilplus)
+          .then(res => res.json())
+          .then(data => {
+              if (data.error) {
+                  console.error("error al mostrar los datos", data);
+              } else {
+                  generarReporteExcel(data.body);
+              }
+          })
+          .catch(error => console.log(error));
+  });
+</script>
 </body>
 </html>

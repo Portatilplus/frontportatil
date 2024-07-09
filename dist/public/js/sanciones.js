@@ -128,6 +128,7 @@ on(document, 'click', '.btneditar', e =>{
 
     // formulario
     idregistro.value = idregistroform
+    idregistro.readOnly = true; 
     motivo.value = motivoform
     modalsancion.show();
     opcion = 'editar';

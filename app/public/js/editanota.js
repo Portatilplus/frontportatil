@@ -14,7 +14,7 @@ const portatilplus = sessionStorage.getItem("portatilplus") + "/admin/notas";
 
 const editar = () => {
 
-    const tarea = document.getElementById('tareas').value;
+    const titulo = document.getElementById('tareas').value;
     const notas = document.getElementById('notas').value;
     const prioridad = document.getElementById('prioridad').value;
     const estado = document.getElementById('estado').value;
@@ -26,7 +26,7 @@ const editar = () => {
         },
         body: JSON.stringify({
             idnotas: idnotas,
-           tarea:tarea,
+           titulo:titulo,
            notas:notas,
            prioridad: prioridad,
            estado: estado,

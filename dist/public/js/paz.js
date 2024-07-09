@@ -32,8 +32,11 @@ const mostrar = (data) => {
                     <p class="descripcion">Descripción: ${data[i].descripcion}</p>
                 </div>
                 <div class="btn-container">
+                <div>
                     <button class="btn btn-success btn-sm" onclick="editar('${data[i].idpazysalvo}','${data[i].nombre}',' ${data[i].apellido}','${data[i].telefono}',
                     '${data[i].sanciones}','${data[i].descripcion}');">Editar</button>
+                    <i class='bx bx-show'></i>
+                </div>
                     <i class='bx bx-trash btnborrar'></i>
                 </div>       
             </div>
@@ -69,7 +72,7 @@ const reporte = (event) => {
 
     // Configurar título y línea superior
     reportePDF.setFontSize(16);
-    reportePDF.text(105, 15, 'Paz y Salvo de Computadores', null, null, 'center');
+    reportePDF.text(105, 15, 'Paz y Salvo', null, null, 'center');
     reportePDF.setLineWidth(0.5);
     reportePDF.line(20, 20, 190, 20);
 

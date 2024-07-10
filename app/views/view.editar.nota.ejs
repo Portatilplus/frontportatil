@@ -14,11 +14,13 @@
 <%- include('partials/view.nav.head.ejs') %>
 
 <main class="container__nota">
+  <div class="form__nota">
 
-    <form class="form__nota">
+  
+    <form>
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Tarea:</label>
-        <input type="text"  class="form-control" placeholder="Tarea"  id="tareas">
+        <input type="text"  class="form-control" placeholder="Tarea"  id="titulo">
       </div>
       <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">Descripcion:</label>
@@ -41,6 +43,7 @@
       
       <button type="button" class="btn btn-success form-control" onclick="editar();">Editar</button>
     </form> 
+  </div>
 </main>
 
 

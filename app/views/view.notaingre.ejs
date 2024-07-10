@@ -14,38 +14,40 @@
 <%- include('partials/view.nav.head.ejs') %>
 
 <main class="container__nota">
-
-    <form class="form__nota">
+  <div class="form__nota">
+    <form>
         <h1>Ingresar Notas</h1>
         <div class="mb-3">
           <label for="recipient-name" class="col-form-label">Tarea:</label>
-          <input type="text" class="form" id="tareas">
+          <input type="text" class="form-control" id="titulo">
         </div>
         <div class="mb-3">
           <label for="message-text" class="col-form-label">Nota:</label>
-          <textarea class="form" id="notas"></textarea>
+          <textarea class="form-control" id="notas"></textarea>
         </div>
         <div class="mb-3">
           <label for="message-text" class="col-form-label">Prioridad:</label>
-          <select name="" id="prioridad" class="form">
-              <option value="Alta" id="prioridad" class="form">Alta</option>
-              <option value="Media" id="prioridad" class="form">Media</option>
-              <option value="Baja" id="prioridad" class="form">Baja</option>
+          <select name="" id="prioridad" class="form-control">
+              <option value="Alta" id="prioridad" class="form-control">Alta</option>
+              <option value="Media" id="prioridad" class="form-control">Media</option>
+              <option value="Baja" id="prioridad" class="form-control">Baja</option>
           </select>
         </div>
         <div class="mb-3">
           <label for="message-text" class="col-form-label">Estado:</label>
-          <select name="" id="" class="form">
-              <option value="Pendiente" id="estado" class="form">Pendiente</option>
+          <select name="" id="" class="form-control">
+              <option value="Pendiente" id="estado" class="form-control">Pendiente</option>
           </select>
         </div>
-      </div>
+      
       <div class="modal-footer">
           <button type="button" class="btn btn-secondary" id="cancelar">Cancelar</button>
           <button type="button" class="btn btn-success" onclick="agregar();">Agregar</button>
           <input type="hidden" id="url" value="<%= url %>">
       </div>
     </form> 
+  </div>
+</div>
 </main>
 
 

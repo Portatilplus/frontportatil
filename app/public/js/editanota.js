@@ -1,20 +1,17 @@
+const portatilplus = sessionStorage.getItem("portatilplus") + "/admin/notas/";
 
-
-document.getElementById('tareas').value = localStorage.getItem('edittarea');
+document.getElementById('titulo').value = localStorage.getItem('edittitulo');
 document.getElementById('notas').value = localStorage.getItem('editnotas');
 document.getElementById('prioridad').value = localStorage.getItem('editprioridad');
 document.getElementById('estado').value = localStorage.getItem('editestado');
 
 const idnotas = localStorage.getItem('editidnotas');
-const portatilplus = sessionStorage.getItem("portatilplus") + "/admin/notas";
-
-
 
 
 
 const editar = () => {
 
-    const titulo = document.getElementById('tareas').value;
+    const titulo = document.getElementById('titulo').value;
     const notas = document.getElementById('notas').value;
     const prioridad = document.getElementById('prioridad').value;
     const estado = document.getElementById('estado').value;

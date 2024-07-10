@@ -42,7 +42,7 @@ const mostrar = (data) => {
 };
 
 function editar(idnotas,titulo,notas,prioridad,estado){
-    localStorage.setItem('edittarea',titulo)
+    localStorage.setItem('edittitulo',titulo)
     localStorage.setItem('editnotas',notas)
     localStorage.setItem('editprioridad',prioridad)
     localStorage.setItem('editestado',estado)

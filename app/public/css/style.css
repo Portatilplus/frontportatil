@@ -186,6 +186,7 @@ cursor: pointer;
 
 
 
+
 /* vista de estado */
 
 /* vista de notas agrgar */
@@ -195,15 +196,17 @@ cursor: pointer;
   justify-content: center;
   margin: auto auto;
   align-items: center;
-  width: 50%;
+  width: 90%;
   height: 50%;
-  border: 2px solid white;
   border-radius: 20px;
 }
 
 .form__nota{
-  width: 500px;
-  height: 50%;
+  width: 70%;
+  height: 550px;
+  /* background-color: rgb(55, 0, 255); */
+  border-radius: 10px;
+  border:  1px solid white;
 
 }
 label{
@@ -212,4 +215,11 @@ label{
 .btnver{
   font-size: 30px;
 
+}
+.form-control{
+  width: 90%;
+}
+form{
+  width: 70%;
+  margin: 0 auto;
 }

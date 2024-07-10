@@ -6,7 +6,7 @@ const logueo =  async()=>{
     sessionStorage.setItem("portatilplus", url);
 
     const portatilplus = sessionStorage.getItem("portatilplus")+"/login";
-  
+
     const options = {
         method: "POST",
         headers: {

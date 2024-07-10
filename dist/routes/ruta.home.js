@@ -12,6 +12,7 @@ rutahome.get("/historial", navegacion.historial);
 rutahome.get("/reserva", navegacion.historialreservas);
 rutahome.get("/paz", navegacion.listarpazysalvo);
 rutahome.get("/editarpaz", navegacion.editarpazysalvo);
+rutahome.get("/versalvo", navegacion.verpazysalvo);
 
 // historial
 rutahome.get("/especificaciones", navegacion.correos);
@@ -22,6 +23,7 @@ rutahome.get("/notas", navegacion.notas);
 rutahome.get("/ingresarnotas", navegacion.ingrenota);
 rutahome.get("/editarnotas", navegacion.editarnota);
 rutahome.get("/completas", navegacion.notascompletas);
+rutahome.get("/vertarea", navegacion.vertarea);
 
 
 export default rutahome

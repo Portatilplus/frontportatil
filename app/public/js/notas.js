@@ -34,7 +34,6 @@ const mostrar = (data) => {
             </td>
             <td class="btn-container">
                 <i class='bx bx-edit btneditar' onclick="editar('${data[i].idnotas}','${data[i].titulo}','${data[i].notas}','${data[i].prioridad}','${data[i].estado}');"></i>
-                <i class='bx bx-trash btnborrar'></i>
             </td>
         </tr>`;
     }
@@ -96,57 +95,7 @@ function cambiarEstado(event, idnotas) {
     }
 }
 
-// borrar notas
-const on = (element, event, selector, handler) => {
-    element.addEventListener(event, (e) => {
-        if (e.target.closest(selector)) {
-            handler(e);
-        }
-    });
-};
 
-on(document, 'click', '.btnborrar', e => {
-    const fila = e.target.parentNode.parentNode;
-    const idnotas = fila.firstElementChild.innerHTML;
-    console.log(idnotas);
-    Swal.fire({
-        title: "¿Estás seguro?",
-        text: "No podrás revertir esto.",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Sí, eliminar!"
-    }).then((result) => {
-        if (result.isConfirmed) {
-            fetch(portatilplus + idnotas, {
-                method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.error) {
-                        Swal.fire({
-                            icon: "error",
-                            title: "Oops...",
-                            text: "Hubo un problema al eliminar la titulo!",
-                        });
-                    } else {
-                        Swal.fire({
-                            title: "Eliminado!",
-                            text: "La titulo ha sido eliminada.",
-                            icon: "success"
-                        }).then(() => {
-                            location.reload();
-                        });
-                    }
-                })
-                .catch(error => console.error(error));
-        }
-    });
-});
 
 // buscador CRUD
 document.getElementById('buscador').addEventListener('keyup', e => {

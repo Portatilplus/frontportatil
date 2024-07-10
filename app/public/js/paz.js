@@ -1,5 +1,6 @@
 const portatilplus = sessionStorage.getItem("portatilplus") + "/admin/salvo/";
 
+
 // consumir
 fetch(portatilplus)
   .then((res) => res.json())
@@ -35,7 +36,8 @@ const mostrar = (data) => {
                 <div>
                     <button class="btn btn-success btn-sm" onclick="editar('${data[i].idpazysalvo}','${data[i].nombre}',' ${data[i].apellido}','${data[i].telefono}',
                     '${data[i].sanciones}','${data[i].descripcion}');">Editar</button>
-                    <i class='bx bx-show'></i>
+                    <i class='bx bx-show abrir' id="abrir" onclick="enviar('${data[i].idpazysalvo}','${data[i].nombre}',' ${data[i].apellido}','${data[i].telefono}',
+                    '${data[i].sanciones}','${data[i].descripcion}');"></i>
                 </div>
                     <i class='bx bx-trash btnborrar'></i>
                 </div>       
@@ -169,6 +171,9 @@ on(document, 'click', '.btnborrar', e => {
   });
 })
 
+// vista
+
+
 
 // buscador crud
 document.getElementById('buscador').addEventListener('keyup', e => {
@@ -191,4 +196,16 @@ style.innerHTML = `
     }
 `;
 document.head.appendChild(style);
+
+function enviar(idpazysalvo,nombre,apellido,telefono,sanciones,descripcion){
+    localStorage.setItem('envnombre',nombre);
+    localStorage.setItem('envmodelo',apellido);
+    localStorage.setItem('envapellido',telefono);
+    localStorage.setItem('envsanciones',sanciones);
+    localStorage.setItem('envdescripcion',descripcion);
+    localStorage.setItem('envidpazysalvo',idpazysalvo);
+
+    window.location.href = "/dash/versalvo";
+
+}
 

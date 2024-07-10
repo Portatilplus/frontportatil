@@ -31,6 +31,14 @@ const editarpazysalvo = (req, res)=>{
     
     res.render("editar.paz.ejs", options)
 }
+const verpazysalvo = (req, res)=>{
+    const url = process.env.BACK_URL;
+    const options ={
+        url:url
+    };
+    
+    res.render("view.ver.paz.ejs", options)
+}
 
 
 
@@ -120,7 +128,15 @@ const notascompletas = (req, res)=>{
         url:url
     };
 
-    res.render("historial/notas.completas.ejs", options);
+    res.render("historial/view.notas.completas.ejs", options);
+}
+const vertarea = (req, res)=>{
+    const url = process.env.BACK_URL;
+    const options ={
+        url:url
+    };
+
+    res.render("ver.tareas.ejs", options);
 }
 
 
@@ -133,6 +149,7 @@ export const navegacion = {
     pazysalvo,
     listarpazysalvo,
     editarpazysalvo,
+    verpazysalvo,
     historial,
     correos,
     sanciones,
@@ -142,5 +159,6 @@ export const navegacion = {
     notas,
     ingrenota,
     editarnota,
-    notascompletas
+    notascompletas,
+    vertarea
 }

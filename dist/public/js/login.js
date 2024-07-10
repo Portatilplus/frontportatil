@@ -6,7 +6,13 @@ const logueo =  async()=>{
     sessionStorage.setItem("portatilplus", url);
 
     const portatilplus = sessionStorage.getItem("portatilplus")+"/login";
-
+    if(!correo || !contrasena){
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Campos vacios!",
+          });
+    }
     const options = {
         method: "POST",
         headers: {

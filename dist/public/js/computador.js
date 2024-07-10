@@ -144,7 +144,10 @@ formcompu.addEventListener('submit', (e) => {
     e.preventDefault()
 
    
-
+    if (!marca.value || !modelo.value || !estado.value|| !estado.value) {
+        Swal.fire("Campos vacios!");
+        return;
+    }
 
     if (opcion == 'nuevo') {
         const options = {

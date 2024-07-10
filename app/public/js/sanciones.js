@@ -139,6 +139,12 @@ on(document, 'click', '.btneditar', e =>{
 
 formsancion.addEventListener('submit', (e) =>{
     e.preventDefault();
+
+    if (!idregistro.value ||!motivo.value) {
+        Swal.fire("Campos vacios!");
+        return;
+    }
+
     if(opcion == 'nuevo'){
         const options = {
             method: 'POST',

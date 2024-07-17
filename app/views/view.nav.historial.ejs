@@ -13,19 +13,20 @@
 <body>
 <%- include('partials/view.nav.head.ejs')  %>
 
-<main class="container">
-    <div>
+    <div class="opc">
+        <div class="opc fija">
         <div class="opcion">
-            <h1>Historial</h1>
+            <h3>Historial</h3>
             <div class="his">
                 <a href="/dash/paz" class="btn btn-success">Paz y Salvo</a>
                 <a href="/dash/reserva" class="btn btn-success">Reservas</a>
             </div>
-                
-        </div>
+        </div>       
         <div class="opciones">
             <input type="search" id="buscador" placeholder="Buscar Usuarios">
         </div>
+        </div>
+       
 
         <table class="table">
             <thead>
@@ -40,10 +41,10 @@
                 </tr>
             </thead>
             <tbody  id="data">
-
+                
             </tbody>
         </table>
-    </div>
+    
   </main>
 
   <div class="modal fade" id="mi-modal" data-bs-backdrop="static">

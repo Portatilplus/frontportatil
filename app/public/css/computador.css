@@ -26,11 +26,9 @@
 } 
 
 
-/* .opc {
-  position: fixed;
-  width: 100%;
-  z-index: 10; 
-} */
+.opc {
+ margin-top: 15px;
+}
 /* opciones */
 .opcion{
   display: flex;
@@ -165,18 +163,20 @@ cursor: pointer;
 
 }
 .btnver{
-cursor: pointer;
-
+  cursor: pointer;
+  font-size: 40px;
+  background-color: #006400;
+  border-radius: 50%;
+  margin: 0 10px;
 }
 
+.btnve{
+  cursor: pointer;
+  font-size: 30px;
+}
 ::placeholder{
   color: rgba(0, 0, 0, 0.521);
 }
-
-
-
-
-
 
 
 

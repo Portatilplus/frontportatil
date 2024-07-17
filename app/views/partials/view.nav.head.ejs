@@ -67,7 +67,7 @@
           </li>
         </ul>
       </li>
-      <li class="list__item list__item--click">
+      <li class="list__item list__item--click ">
         <div class="list__button">
           <i class="bx bx-log-out"></i>
           <button class="btn cerrar nav__link" onclick="cerrarsesion();">Cerrar Sesión</button>
@@ -77,6 +77,29 @@
   </nav>
 </header>
 
+<div class="top-nav">
+  <div class="top-nav__content">
+    <div class="top-nav__left">
+      <h1>Administrador</h1>
+    </div>
+    <div class="derecha">
+      <div class="caja" id="caja">
+        <a href="/dash/ajustes" class="btnajustes" id="btnconfi">Perfil</a>
+      </div>
+      <div class="top-nav__right">
+        <i class='bx bx-user'  id="btnajuste" onclick="mostrarajustes();"></i>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+
+<main class="container">
+
+
+
+<!-- <script src="../../js/ajustes.js"></script> -->
 <script>
   const cerrarsesion = () => {
     sessionStorage.setItem("token", "");
@@ -89,4 +112,12 @@
     window.location.href = "/";
   }
 
+  function mostrarajustes() {
+    var caja = document.getElementById('caja');
+    if (caja.style.display === 'none' || caja.style.display === '') {
+      caja.style.display = 'flex';
+    } else {
+      caja.style.display = 'none';
+    }
+  }
 </script>

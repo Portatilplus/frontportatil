@@ -17,10 +17,6 @@ const agregar = () =>{
     const prioridad = document.getElementById("prioridad").value;
     const estado = document.getElementById("estado").value;
 
-    console.log(titulo);
-console.log(notas);
-console.log(prioridad);
-console.log(estado);
 
     if (!titulo || !notas || !prioridad || !estado) {
         Swal.fire("Campos vacíos!");

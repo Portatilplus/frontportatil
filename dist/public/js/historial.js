@@ -29,12 +29,12 @@ const mostrar = (data) =>{
                 <td class= "correo">${data[i].correo}</td>
                 <td class= "correo">${data[i].rol}</td>
                 <td class= "correo">${data[i].estado}</td>
-
             </tr>
         `
     }
     document.getElementById('data').innerHTML = body;
 }
+
 
 
 
@@ -63,3 +63,18 @@ style.innerHTML = `
     }
 `;
 document.head.appendChild(style);
+
+// SANCIONar DESDE EL HISTORIAL
+const portatilplus2 = sessionStorage.getItem("portatilplus") + "/admin/sancion/";
+fetch(portatilplus2)
+    .then(res => res.json())
+    .then(data => {
+        if (data.error) {
+            console.error("error al mostrar los datos", data);
+        } else {
+            mostrar(data.body[0]);
+        }
+    })
+    .catch(error => console.log(error));
+
+    

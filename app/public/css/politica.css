@@ -25,23 +25,23 @@
  }
 
 
-.container {
+.con {
     width: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    
+    margin: auto auto;
  }
 
-.titulo{
-    margin-bottom: 20px;
-}
 .paz__salvo{
     width: 80%;
     height: 550px;
     /* background-color: rgb(55, 0, 255); */
     border-radius: 10px;
     border:  1px solid white;
+    margin:  auto auto;
 }
 form{
     width: 90%;

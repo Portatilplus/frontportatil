@@ -20,33 +20,31 @@
   <body>
     <%- include('partials/view.nav.head.ejs') %>
 
-    <main class="container">
-      <div class="titulo">
-        <h1>Editar Paz y Salvo</h1>
-    </div>
+
     <div class="paz__salvo">
         <div class="paz__form">
           <form action="">
-            <div class="mb-3">
+            <h4>Editar</h4>
+            <div class="mb-2">
               <label for="exampleFormControlInput1" class="form-label">Nombre:</label>
               <input type="text"  class="form-control" placeholder="Nombre"  id="nombre">
             </div>
-            <div class="mb-3">
+            <div class="mb-2">
               <label for="exampleFormControlInput1" class="form-label">Apellido:</label>
               <input type="text"  id="apellido" class="form-control" placeholder="Apellido">
             </div>
-            <div class="mb-3">
+            <div class="mb-2">
               <label for="exampleFormControlInput1" class="form-label">Telefono:</label>
               <input type="number" id="tele" class="form-control"  placeholder="Telefono">
             </div>
-            <div class="mb-3">
+            <div class="mb-2">
               <label for="exampleFormControlInput1" class="form-label">Sanciones:</label>
               <select name="" class="form-control">
                 <option value="Si" id="sanciones" class="form-control">Si</option>
                 <option value="No" id="sanciones" class="form-control">No</option>
               </select>
             </div>
-            <div class="mb-3">
+            <div class="mb-2">
               <label for="exampleFormControlTextarea1" class="form-label">Contenido:</label>
               <textarea class="form-control" id="descripcion" rows="3" placeholder="Contenido del Administrador"></textarea>
             </div>

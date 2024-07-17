@@ -6,6 +6,7 @@ const rutahome = Router();
 
 
 rutahome.get("/", navegacion.inicio);
+rutahome.get("/ajustes", navegacion.ajustes);
 rutahome.get("/salvo", navegacion.pazysalvo);
 rutahome.get("/historial", navegacion.historial);
 // histroial

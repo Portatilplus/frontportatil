@@ -27,9 +27,9 @@ const mostrar = (data) => {
             <td>${data[i].notas}</td>
             <td class="prioridad">${data[i].prioridad}</td>
             <td class="estado">
-                <select name="estado" class="estado-select form" onchange="cambiarEstado(event, ${data[i].idnotas})">
-                    <option value="Pendiente" ${data[i].estado === 'Pendiente' ? 'selected' : ''} class="form">Pendiente</option>
-                    <option value="Completado" ${data[i].estado === 'Completado' ? 'selected' : ''} class="form">Completado</option>
+                <select name="estado" class="estado-select selec" onchange="cambiarEstado(event, ${data[i].idnotas})">
+                    <option value="Pendiente" ${data[i].estado === 'Pendiente' ? 'selected' : ''} class="selec">Pendiente</option>
+                    <option value="Completado" ${data[i].estado === 'Completado' ? 'selected' : ''} class="selec">Completado</option>
                 </select>
             </td>
             <td class="btn-container">

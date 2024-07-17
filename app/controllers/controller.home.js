@@ -2,11 +2,9 @@ import { config } from "dotenv"
 config();
 
 const inicio = (req, res)=>{
-
-    // const tokenprivate = process.env.PRIVATE_KEY;
     res.render("view.nav.dash.ejs")
-// , {tokenprivate}
 }
+
 const pazysalvo = (req, res)=>{
     const url = process.env.BACK_URL;
     const options ={
@@ -14,6 +12,14 @@ const pazysalvo = (req, res)=>{
     };
     
     res.render("view.nav.paz.ejs", options)
+}
+const ajustes = (req, res)=>{
+    const url = process.env.BACK_URL;
+    const options ={
+        url:url
+    };
+    
+    res.render("view.ajustes.ejs", options)
 }
 const listarpazysalvo = (req, res)=>{
     const url = process.env.BACK_URL;
@@ -40,8 +46,6 @@ const verpazysalvo = (req, res)=>{
     res.render("view.ver.paz.ejs", options)
 }
 
-
-
 const historial = (req, res)=>{
     const url = process.env.BACK_URL;
     const options ={
@@ -51,6 +55,8 @@ const historial = (req, res)=>{
     res.render("view.nav.historial.ejs", options)
 
 }
+
+
 // historial
 const historialreservas = (req, res) =>{
     const url = process.env.BACK_URL;
@@ -60,9 +66,7 @@ const historialreservas = (req, res) =>{
     res.render("historial/view.his.ejs",options);
     // historail reserva
 }
-
 // historial
-
 const correos = (req, res)=>{
     const url = process.env.BACK_URL;
     const options ={
@@ -71,8 +75,6 @@ const correos = (req, res)=>{
 
     res.render("view.nav.correos.ejs",options)
 }
-
-
 const sanciones = (req, res)=>{
     const url = process.env.BACK_URL;
     const options ={
@@ -80,7 +82,6 @@ const sanciones = (req, res)=>{
     };
     res.render("view.nav.sancion.ejs",options)
 }
-
 const accesorios = (req, res)=>{
     const url = process.env.BACK_URL;
     const options ={
@@ -89,7 +90,6 @@ const accesorios = (req, res)=>{
 
     res.render("view.nav.accesorio.ejs", options);
 }
-
 const computadores = (req, res)=>{
     const url = process.env.BACK_URL;
     const options ={
@@ -113,7 +113,6 @@ const ingrenota = (req, res)=>{
 
     res.render("view.notaingre.ejs", options);
 }
-// }edutar
 const editarnota = (req, res)=>{
     const url = process.env.BACK_URL;
     const options ={
@@ -139,11 +138,6 @@ const vertarea = (req, res)=>{
     res.render("ver.tareas.ejs", options);
 }
 
-
-
-
-
-
 export const navegacion = {
     inicio,
     pazysalvo,
@@ -160,5 +154,6 @@ export const navegacion = {
     ingrenota,
     editarnota,
     notascompletas,
-    vertarea
+    vertarea,
+    ajustes,
 }

@@ -26,11 +26,11 @@
 } 
 
 
-/* .opc {
-  position: fixed;
-  width: 100%;
-  z-index: 10; 
-} */
+.opc {
+  margin-top: 15px;
+  
+}
+
 /* opciones */
 .opcion{
   display: flex;
@@ -53,7 +53,7 @@
 
 
 h1{
-  margin: 20px 0;
+  margin: 10px 0;
 }
 .opciones{
   display: flex;
@@ -121,7 +121,15 @@ tr{
   color: white;
 }
 
-
+.selec{
+  background-color: rgb(96, 110, 110);
+  border: none;
+  outline: none;
+  height: 35px;
+  width: 100%;
+  border-radius: 10px;
+  transition: .2s ease;
+}
 
 
 /* tabla */
@@ -196,16 +204,16 @@ cursor: pointer;
     justify-content: center;
     margin: auto auto;
     align-items: center;
-    width: 90%;
-    height: 50%;
+    width: 80%;
     border-radius: 20px;
+    border: 1px solid white;
+
   }
 
   .form__nota{
-    width: 70%;
+    width: 80%;
     height: 550px;
     border-radius: 10px;
-    border:  1px solid white;
 
   }
   label{
@@ -218,3 +226,9 @@ cursor: pointer;
   .form-group .form-control{
     width: 90%;
   }
+.btncrear{
+  cursor: pointer;
+  font-size: 40px;
+  background-color: #006400;
+  border-radius: 50%;
+}

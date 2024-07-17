@@ -1,10 +1,6 @@
 // url
 
-const url = document.getElementById("url").value;
-
-sessionStorage.setItem("portatilplus", url);
-
-const portatilplus = sessionStorage.getItem("portatilplus")+"/admin/sancion/";
+const portatilplus = sessionStorage.getItem("portatilplus") + "/admin/sancion/";
 
 
 const modalsancion = new bootstrap.Modal(document.getElementById('modalsancion'))
@@ -17,8 +13,8 @@ let opcion = ''
 
 
 btnnuevo.addEventListener('click', () => {
-    idregistro.value='';
-    motivo.value='';
+    idregistro.value = '';
+    motivo.value = '';
     modalsancion.show();
     opcion = 'nuevo';
 });
@@ -27,22 +23,22 @@ btnnuevo.addEventListener('click', () => {
 // mostrar datos get
 
 fetch(portatilplus)
-.then(res=>res.json())
-.then(data =>{
-    if(data.error){
-        console.error("error al mostrar los datos", data);
-    }else{
-        mostrar(data.body[0]);
-    }
-})
-.catch(error => console.log(error));
+    .then(res => res.json())
+    .then(data => {
+        if (data.error) {
+            console.error("error al mostrar los datos", data);
+        } else {
+            mostrar(data.body[0]);
+        }
+    })
+    .catch(error => console.log(error));
 
 
 // mostrar los resultados
 
-const mostrar = (data) =>{
+const mostrar = (data) => {
     let body = ''
-    for(let i = 0; i < data.length; i++){
+    for (let i = 0; i < data.length; i++) {
         body += `
         <tr>
             <td class="sancion">${data[i].id_sancion}</td>
@@ -58,13 +54,11 @@ const mostrar = (data) =>{
     document.getElementById('data').innerHTML = body;
 }
 
-
-
 // metodo on
 
-const on = (element, event, selector, handler)=>{
-    element.addEventListener(event, (e)=>{
-        if(e.target.closest(selector)){
+const on = (element, event, selector, handler) => {
+    element.addEventListener(event, (e) => {
+        if (e.target.closest(selector)) {
             handler(e);
         }
     });
@@ -73,10 +67,10 @@ const on = (element, event, selector, handler)=>{
 
 // eliminar
 
-on(document, 'click', '.btnborrar', e=>{
+on(document, 'click', '.btnborrar', e => {
     const fila = e.target.parentNode.parentNode;
     const id_sancion = fila.firstElementChild.innerHTML;
-    
+
 
     Swal.fire({
         title: "Estas Seguro?",
@@ -86,41 +80,41 @@ on(document, 'click', '.btnborrar', e=>{
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         confirmButtonText: "Si, eliminar!"
-      }).then((result) => {
+    }).then((result) => {
         if (result.isConfirmed) {
             fetch(portatilplus + id_sancion, {
                 method: "DELETE",
-                headers:{
+                headers: {
                     "Content-Type": "application/json"
                 }
             })
-            .then(res => res.json())
-            .then(data => {
-                if(data.error){
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "Hubo un problema al eliminar sancion!",
-                      });
-                }else{
-                    Swal.fire({
-                        title: "Eliminado!",
-                        text: "La sancion ha sido eliminada.",
-                        icon: "success"
-                      }).then(()=>{
-                        location.reload()
-                      })
-                }
-            })
-            .catch(error => console.error(error));
+                .then(res => res.json())
+                .then(data => {
+                    if (data.error) {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "Hubo un problema al eliminar sancion!",
+                        });
+                    } else {
+                        Swal.fire({
+                            title: "Eliminado!",
+                            text: "La sancion ha sido eliminada.",
+                            icon: "success"
+                        }).then(() => {
+                            location.reload()
+                        })
+                    }
+                })
+                .catch(error => console.error(error));
 
         }
-      });
+    });
 })
 
 
 let idform = 0
-on(document, 'click', '.btneditar', e =>{
+on(document, 'click', '.btneditar', e => {
     const fila = e.target.parentNode.parentNode;
     idform = fila.children[0].innerHTML
     const idregistroform = fila.children[1].innerHTML
@@ -137,86 +131,104 @@ on(document, 'click', '.btneditar', e =>{
 
 // editar o agregar
 
-formsancion.addEventListener('submit', (e) =>{
+formsancion.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    if (!idregistro.value ||!motivo.value) {
+    if (!idregistro.value || !motivo.value) {
         Swal.fire("Campos vacios!");
         return;
     }
 
-    if(opcion == 'nuevo'){
+
+    if (opcion == 'nuevo') {
         const options = {
             method: 'POST',
-            headers:{
+            headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                id_registro : idregistro.value,
-                motivo : motivo.value
+                id_registro: idregistro.value,
+                motivo: motivo.value
             })
         }
         fetch(portatilplus, options)
-        .then(res => res.json())
-        .then(data =>{
-            const nuevasancion = []
-            nuevasancion.push(data.body)
-            mostrar(nuevasancion)
-            location.reload()
-        })
-        
+            .then(res => res.json())
+            .then(data => {
+                if (data.error == false) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Computador agregado Correctamente",
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                    setTimeout(function () {
+                        const nuevasancion = []
+                        nuevasancion.push(data.body)
+                        mostrar(nuevasancion)
+                        location.reload()
+                    }, 1000);
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Error al agregar Computador!",
+                    })
+                }
+            })
+
     }
-    if(opcion == 'editar'){
+    if (opcion == 'editar') {
         const options = {
             method: 'PUT',
-            headers:{
+            headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                id_sancion : idform,
-                id_registro : idregistro.value,
-                motivo : motivo.value
+                id_sancion: idform,
+                id_registro: idregistro.value,
+                motivo: motivo.value
             })
         }
         fetch(portatilplus, options)
-        .then(res => res.json())
-        .then(data =>{
-            if(data.error == true){
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Error al Editar!",
-                }) 
-            }else{
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Registro Editado Correctamente",
-                    showConfirmButton: false,
-                    timer: 300000
-                });
-                setTimeout(function () {
-                    location.reload()
-                },1000);
-            }
-        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.error == true) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Error al Editar!",
+                    })
+                } else {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Registro Editado Correctamente",
+                        showConfirmButton: false,
+                        timer: 300000
+                    });
+                    setTimeout(function () {
+                        location.reload()
+                    }, 1000);
+                }
+            })
     }
-} )
+})
 
 
 // buscador crud
 
 const buscador = document.getElementById('buscador')
 
-buscador.addEventListener('keyup', e =>{
+buscador.addEventListener('keyup', e => {
     const query = e.target.value.toLowerCase();
 
     document.querySelectorAll('#data tr').forEach(row => {
         const retiro = row.querySelector('.sancion').textContent.toLowerCase();
 
-        if(retiro.includes(query)){
+        if (retiro.includes(query)) {
             row.classList.remove('filtro')
-        }else{
+        } else {
             row.classList.add('filtro')
         }
     });

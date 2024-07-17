@@ -3,10 +3,22 @@ const logueo =  async()=>{
     const contrasena = document.getElementById("contrasena").value;
     const url = document.getElementById("url").value;
 
+    if (!correo.endsWith("@gmail.com")) {
+        Swal.fire({
+            icon: "error",
+            title: "Correo no válido",
+            text: "Por favor, ingrese una dirección de correo de Gmail.",
+        });
+        return; 
+    }
+    
     sessionStorage.setItem("portatilplus", url);
 
     const portatilplus = sessionStorage.getItem("portatilplus")+"/login";
-
+    if(!correo || !contrasena){
+        Swal.fire("Campos vacios!"); 
+        return;
+    }
     const options = {
         method: "POST",
         headers: {
@@ -28,7 +40,9 @@ const logueo =  async()=>{
                 text: "Correo o Contraseña Incorrecta!",
               });
         }else{ 
+            sessionStorage.setItem("id", data.body.payload.id_registro);
             sessionStorage.setItem("token", data.body.token);
+
                 Swal.fire({
                     position: "center",
                     icon: "success",

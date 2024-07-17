@@ -13,21 +13,16 @@
 <body>
 <%- include('partials/view.nav.head.ejs') %>
 
-<main class="container">
   <div class="opc">
     <div class="opc">
-      <h1>Lista de Computadores</h1>
+      <h2>Lista de Computadores</h2>
       <div class="opciones">
         <div class="opc-btn">
-          <button class="btn btn-success" id="btnnuevo">Nuevo</button>
+          <i class='bx bx-plus btnver' id="btnnuevo"></i>
+          <!-- <button class="btn btn-success" id="btnnuevo">Nuevo</button> -->
           <i class='bx bx-file btnver'onclick="generarReporteExcel();" id="btnReporteExcel"></i>
         </div>
         <div class="buscar">
-            <!-- <select name="filtroestado" id="filtroestado" class="input">filtro
-                <option value="Todos" class="input">Todos</option>
-                <option value="Reservado" class="input">Reservado</option>
-                <option value="Diponible" class="input">Disponible</option>
-            </select> -->
           <input type="search" id="buscador" class="nav__link--buscar" placeholder="buscar"/>
         </div>
       </div>

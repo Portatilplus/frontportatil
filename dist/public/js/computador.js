@@ -1,9 +1,3 @@
-// import XlsxPopulate from "xlsx-populate";
-
-const url = document.getElementById("url").value;
-
-sessionStorage.setItem("portatilplus", url);
-
 const portatilplus = sessionStorage.getItem("portatilplus")+"/admin/computador/";
 
 
@@ -51,7 +45,7 @@ const mostrar = (data) => {
             <td class="btn-container">
                 <i class='bx bx-edit btneditar'></i>
                 <i class='bx bx-trash btnborrar'></i>
-                <i class='bx bx-show btnver' onclick="enviar('${data[i].idcomputador}','${data[i].marca}',' ${data[i].modelo}','${data[i].estado}',
+                <i class='bx bx-show btnve' onclick="enviar('${data[i].idcomputador}','${data[i].marca}',' ${data[i].modelo}','${data[i].estado}',
                     '${data[i].area}');"></i>
             </td>
         </tr>`;

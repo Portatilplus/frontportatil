@@ -104,20 +104,24 @@ tr{
   text-align: center;
 }
 .form:hover{
-  background: rgba(255, 255, 255, 0.349);
+  background: rgba(196, 181, 181, 0.349);
     box-shadow: 0 0 20px rgb(82, 82, 82);
 }
 ::placeholder{
   color: rgb(252, 252, 252);
 }
 .form-group > span{
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
 }
 
 .modal-header {
   background-color: #006400; 
   color: white;
 }
+.modal-dialog > .modal-content{
+  background-color: #00000077;
+}
+
 
 
 

@@ -99,7 +99,7 @@ h1{
   height: 40px;
   width: 100%;
   padding: 0 10px 0 45px;
-  border-radius: 15px;
+  border-radius: 10px;
   transition: .2s ease;
 }
 tr{
@@ -113,13 +113,17 @@ tr{
   color: rgb(252, 252, 252);
 }
 .form-group > span{
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
 }
 
 .modal-header {
   background-color: #006400; 
   color: white;
 }
+.modal-dialog > .modal-content{
+  background-color: #00000077;
+}
+
 
 .selec{
   background-color: rgb(96, 110, 110);

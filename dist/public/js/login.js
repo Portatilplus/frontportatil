@@ -9,16 +9,12 @@ const logueo =  async()=>{
             title: "Correo no válido",
             text: "Por favor, ingrese una dirección de correo de Gmail.",
         });
-        return; 
+        return;
     }
-    
     sessionStorage.setItem("portatilplus", url);
 
     const portatilplus = sessionStorage.getItem("portatilplus")+"/login";
-    if(!correo || !contrasena){
-        Swal.fire("Campos vacios!"); 
-        return;
-    }
+   
     const options = {
         method: "POST",
         headers: {
@@ -60,3 +56,9 @@ const logueo =  async()=>{
     })
     
 }
+
+// logo portatil plus se recargue
+
+document.getElementById("logo").addEventListener('click', () => {
+    location.reload();
+});
